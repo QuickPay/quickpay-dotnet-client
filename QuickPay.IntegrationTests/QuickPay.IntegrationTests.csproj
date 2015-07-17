@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QPConfig.cs" />
+    <Compile Include="RestClientSmokeTests.cs" />
     <Compile Include="SmokeTest.cs" />
   </ItemGroup>
   <ItemGroup>
