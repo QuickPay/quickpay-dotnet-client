@@ -70,7 +70,7 @@ namespace Quickpay
             return o;
         }
 
-        private static string ParamsToString(Dictionary<string, object> param)
+        private static string DictionaryToQueryString(Dictionary<string, object> param)
         {
             if (param == null)
                 return null;
@@ -78,14 +78,16 @@ namespace Quickpay
             if (all.Count == 0)
                 return null;
             var sb = new StringBuilder();
+            var first = true;
             foreach (var kvp in all)
             {
-                sb.Append(HttpUtility.UrlEncode(kvp.Key));
-                sb.Append("=");
-                sb.Append(HttpUtility.UrlEncode(kvp.Value.ToString()));
-                sb.Append("&");
+                if (!first) sb.Append("&");
+                first = false;
+                sb.AppendFormat("{0}={1}", 
+                    HttpUtility.UrlEncode(kvp.Key), 
+                    HttpUtility.UrlEncode(kvp.Value.ToString()));
             }
-            return sb.ToString(0, sb.Length - 1);
+            return sb.ToString();
         }
 
         private Dictionary<string, object> CleanParam(Dictionary<string, object> param)
@@ -100,7 +102,7 @@ namespace Quickpay
             param = CleanParam(param);
             var hasParam = param != null && param.Count > 0;
             if (method == HttpVerb.GET && hasParam)
-                uri += "?" + ParamsToString(param);
+                uri += "?" + DictionaryToQueryString(param);
             var client = WebRequest.CreateHttp(uri);
             client.Headers["Accept-Version"] = ApiVersion;
             client.UserAgent = UserAgent;
