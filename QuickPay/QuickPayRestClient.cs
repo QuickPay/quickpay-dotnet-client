@@ -34,11 +34,13 @@ namespace Quickpay
         }
 
 
-        public async Task<PingResponse> PingAsync()
+        public PingResponse Ping()
         {
             var request = CreateRequest("ping");
 
-            return Client.Execute<PingResponse>(request).Data;
+			var response = Client.Execute<PingResponse> (request);
+			VerifyResponse (response);
+			return response.Data;
         }
 
         public List<AclResource> AclResources()
@@ -47,11 +49,17 @@ namespace Quickpay
             request.Method = Method.GET;
 
             var response =  Client.Execute<List<AclResource>>(request);
-            if (response.StatusCode != HttpStatusCode.OK)
+			VerifyResponse (response);
+          
+            return response.Data;
+        }
+
+        private void VerifyResponse<T>(IRestResponse<T> response)
+        {
+			if (response.StatusCode != HttpStatusCode.OK && response.StatusCode != HttpStatusCode.Created)
             {
                 throw new Exception(response.StatusDescription);
             }
-            return response.Data;
         }
 
     }

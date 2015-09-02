@@ -8,10 +8,10 @@ namespace QuickPay.IntegrationTests
     public class RestClientSmokeTests
     {
         [Test]
-        public async void CanPingGetApiWithCredentials()
+        public void CanPingGetApiWithCredentials()
         {
             var sut = new QuickPayRestClient(QpConfig.Username, QpConfig.Password);
-            var result = await sut.PingAsync();
+            var result = sut.Ping();
             StringAssert.Contains("Pong", result.Msg);
         }
         /*
