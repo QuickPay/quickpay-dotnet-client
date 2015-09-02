@@ -64,11 +64,15 @@ namespace Quickpay
 			return Enum.GetName (typeof(AccountType), value);
 		}
 
+		private List<HttpStatusCode> OkStatusCodes = new List<HttpStatusCode>(){
+			HttpStatusCode.OK,
+			HttpStatusCode.Created,
+			HttpStatusCode.Accepted
+		};
+
         private void VerifyResponse<T>(IRestResponse<T> response)
         {
-			if (response.StatusCode != HttpStatusCode.OK 
-				&& response.StatusCode != HttpStatusCode.Created
-				&& response.StatusCode != HttpStatusCode.Accepted)
+			if (!OkStatusCodes.Contains(response.StatusCode))
             {
                 throw new Exception(response.StatusDescription);
             }
