@@ -19,7 +19,7 @@ namespace Quickpay
     {
         private const string UserAgent = "Csharp Quickpay API lib";
         private const string ApiVersion = "v10";
-        public const string BASE_URL = "https://api.quickpay.net/";
+		public const string BASE_URL = "https://api.quickpay.net/";
         private readonly string _apikey;
 
         /// <summary>

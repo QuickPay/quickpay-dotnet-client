@@ -2,6 +2,7 @@
 using System.Net;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Text;
 using RestSharp;
 
 namespace Quickpay
@@ -9,9 +10,15 @@ namespace Quickpay
     public class QuickPayRestClient
     {
         public RestClient Client { get; set; }
+		public string BaseUrl { get; set; }
+		public const string BASE_URL = "https://api.quickpay.net/";
 
         public QuickPayRestClient(string username, string password)
         {
+			if (BaseUrl == string.Empty) {
+				BaseUrl = BASE_URL;
+			}
+
             Client = new RestClient("https://api.quickpay.net/")
             {
                 Authenticator = new HttpBasicAuthenticator(username, password)
@@ -20,10 +27,8 @@ namespace Quickpay
 
         public QuickPayRestClient(string apikey)
         {
-            Client = new RestClient("https://api.quickpay.net/")
-            {
-                Authenticator = new HttpBasicAuthenticator(string.Empty, apikey)
-            };
+			Client = new RestClient ("https://api.quickpay.net/");
+			Client.AddDefaultParameter("Authorization", string.Format("Basic {0}", ToSecret(":" + apikey)));
         }
 
         private RestRequest CreateRequest(string resource)
@@ -63,6 +68,11 @@ namespace Quickpay
 		{
 			return Enum.GetName (typeof(AccountType), value);
 		}
+
+					private static string ToSecret(string apikey)
+					{
+						return Convert.ToBase64String(Encoding.UTF8.GetBytes(apikey));
+					}
 
 		private List<HttpStatusCode> OkStatusCodes = new List<HttpStatusCode>(){
 			HttpStatusCode.OK,

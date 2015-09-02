@@ -14,13 +14,13 @@ namespace QuickPay.IntegrationTests
             var result = sut.Ping();
             StringAssert.Contains("Pong", result.Msg);
         }
+
         [Test]
         public void CanPingGetApiWithApiKey()
         {
-            //var sut = new QuickPayRestClient(QpConfig.ApiKey);
-            //var result = sut.Ping();
-			Assert.Inconclusive ();
-            //StringAssert.Contains("Pong", result.Msg);
+            var sut = new QuickPayRestClient(QpConfig.ApiKey);
+            var result = sut.Ping();
+            StringAssert.Contains("Pong", result.Msg);
         }
 
         [Test]
