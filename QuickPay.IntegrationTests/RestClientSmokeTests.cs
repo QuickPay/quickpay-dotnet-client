@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using Quickpay;
 
@@ -12,11 +8,29 @@ namespace QuickPay.IntegrationTests
     public class RestClientSmokeTests
     {
         [Test]
-        public async void CanPingGetApi()
+        public async void CanPingGetApiWithCredentials()
         {
             var sut = new QuickPayRestClient(QpConfig.Username, QpConfig.Password);
-            var result = sut.Ping();
-            Assert.NotNull(result.Msg);
+            var result = await sut.PingAsync();
+            StringAssert.Contains("Pong", result.Msg);
+        }
+        /*
+        [Test]
+        public async void CanPingGetApiWithApiKey()
+        {
+            var sut = new QuickPayRestClient(QpConfig.ApiKey);
+            var result = await sut.PingAsync();
+            StringAssert.Contains("Pong", result.Msg);
+        }
+        */
+
+        [Test]
+        public void CanGetAclResourcesAsync()
+        {
+            var sut = new QuickPayRestClient(QpConfig.Username, QpConfig.Password);
+            var result = sut.AclResources();
+            Assert.AreNotEqual(0, result.Count);
+            Assert.NotNull(result[0].Description);
         }
     }
 }

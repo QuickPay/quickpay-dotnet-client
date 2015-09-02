@@ -1,7 +1,6 @@
 ﻿using System;
+using System.Net;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using RestSharp;
 
@@ -10,14 +9,20 @@ namespace Quickpay
     public class QuickPayRestClient
     {
         public RestClient Client { get; set; }
-        public QuickPayRestClient(string username, string password, string apikey="")
+
+        public QuickPayRestClient(string username, string password)
         {
             Client = new RestClient("https://api.quickpay.net/")
             {
-                Authenticator =
-                    apikey !=string.Empty
-                        ? new HttpBasicAuthenticator(string.Empty, apikey)
-                        : new HttpBasicAuthenticator(username, password)
+                Authenticator = new HttpBasicAuthenticator(username, password)
+            };
+        }
+
+        public QuickPayRestClient(string apikey)
+        {
+            Client = new RestClient("https://api.quickpay.net/")
+            {
+                Authenticator = new HttpBasicAuthenticator(string.Empty, apikey)
             };
         }
 
@@ -29,11 +34,25 @@ namespace Quickpay
         }
 
 
-        public PingResponse Ping()
+        public async Task<PingResponse> PingAsync()
         {
             var request = CreateRequest("ping");
 
             return Client.Execute<PingResponse>(request).Data;
         }
+
+        public List<AclResource> AclResources()
+        {
+            var request = CreateRequest("acl-resources");
+            request.Method = Method.GET;
+
+            var response =  Client.Execute<List<AclResource>>(request);
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                throw new Exception(response.StatusDescription);
+            }
+            return response.Data;
+        }
+
     }
 }

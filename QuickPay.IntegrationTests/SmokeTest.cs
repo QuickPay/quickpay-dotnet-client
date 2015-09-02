@@ -8,6 +8,7 @@ using Quickpay;
 
 namespace QuickPay.IntegrationTests
 {
+    /*
     [TestFixture]
     public class SmokeTest
     {
@@ -44,4 +45,5 @@ namespace QuickPay.IntegrationTests
         }
 
     }
+    */
 }
