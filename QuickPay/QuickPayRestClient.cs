@@ -43,9 +43,14 @@ namespace Quickpay
 			return response.Data;
         }
 
-        public List<AclResource> AclResources()
+		public List<AclResource> AclResources(AccountType accountType = AccountType.Any, int page = 1,
+			int pageSize = 20)
         {
             var request = CreateRequest("acl-resources");
+			request.AddParameter ("page", page);
+			request.AddParameter ("page_size", pageSize);
+			if(accountType != AccountType.Any)
+			  request.AddParameter ("account_type", GetName(accountType));
             request.Method = Method.GET;
 
             var response =  Client.Execute<List<AclResource>>(request);
@@ -54,9 +59,16 @@ namespace Quickpay
             return response.Data;
         }
 
+		private string GetName(AccountType value)
+		{
+			return Enum.GetName (typeof(AccountType), value);
+		}
+
         private void VerifyResponse<T>(IRestResponse<T> response)
         {
-			if (response.StatusCode != HttpStatusCode.OK && response.StatusCode != HttpStatusCode.Created)
+			if (response.StatusCode != HttpStatusCode.OK 
+				&& response.StatusCode != HttpStatusCode.Created
+				&& response.StatusCode != HttpStatusCode.Accepted)
             {
                 throw new Exception(response.StatusDescription);
             }
