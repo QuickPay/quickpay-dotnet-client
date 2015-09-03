@@ -18,7 +18,8 @@ namespace Quickpay
         {
             Client = new RestClient(BASE_URL)
                 {
-                    Authenticator = new HttpBasicAuthenticator(username, password)
+                    Authenticator = new HttpBasicAuthenticator(username, password),
+					UserAgent = "QuickPay .Net client"
                 };
         }
 
