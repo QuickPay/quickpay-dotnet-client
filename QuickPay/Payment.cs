@@ -5,7 +5,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Quickpay
 {
-    public class Payment
+    public class Payment_old
     {
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
@@ -31,14 +31,14 @@ namespace Quickpay
         [JsonProperty(PropertyName = "currency")]
         public string Currency { get; set; }
 
-        [JsonProperty(PropertyName = "state")]
-        public PaymentState State { get; set; }
+       // [JsonProperty(PropertyName = "state")]
+       // public PaymentState State { get; set; }
 
         [JsonProperty(PropertyName = "operations")]
         public List<PaymentOperation> Operations { get; set; }
 
-        [JsonProperty(PropertyName = "metadata")]
-        public AdditionalPaymentData Metadata { get; set; }
+        //[JsonProperty(PropertyName = "metadata")]
+        //public AdditionalPaymentData Metadata { get; set; }
 
         [JsonProperty(PropertyName = "created_at")]
         [JsonConverter(typeof (IsoDateTimeConverter))]

@@ -56,22 +56,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountType.cs" />
-    <Compile Include="AclResource.cs" />
-    <Compile Include="AdditionalPaymentData.cs" />
-    <Compile Include="HttpVerbs.cs" />
-    <Compile Include="Payment.cs" />
-    <Compile Include="PaymentLink.cs" />
-    <Compile Include="PaymentOperation.cs" />
-    <Compile Include="PaymentState.cs" />
-    <Compile Include="PingResponse.cs" />
-    <Compile Include="QuickpayClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuickpayException.cs" />
-    <Compile Include="QuickPayPhysicalAddress.cs" />
     <Compile Include="QuickPayRestClient.cs" />
     <Compile Include="Util\StringExtensions.cs" />
     <Compile Include="Util\EnumExtensions.cs" />
+    <Compile Include="Models\payment.cs" />
+    <Compile Include="Models\AclResource.cs" />
+    <Compile Include="Models\AccountType.cs" />
+    <Compile Include="Models\HttpVerbs.cs" />
+    <Compile Include="Models\PingResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -95,5 +89,6 @@
   -->
   <ItemGroup>
     <Folder Include="Util\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 </Project>
