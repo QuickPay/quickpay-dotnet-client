@@ -32,6 +32,5 @@ namespace QuickPay.IntegrationTests
 
 			Assert.AreNotEqual (0, result.Count);
         }
-
     }
 }
