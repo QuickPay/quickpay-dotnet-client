@@ -24,8 +24,10 @@ namespace Quickpay
 
         public QuickPayRestClient(string apikey)
         {
-            Client = new RestClient (BASE_URL);
-			Client.AddDefaultParameter("Authorization", string.Format("Basic {0}", apikey.ToSecret ()), ParameterType.HttpHeader);
+			Client = new RestClient(BASE_URL)
+			{
+				Authenticator = new HttpBasicAuthenticator(string.Empty, apikey)
+			};
         }
 
         private RestRequest CreateRequest(string resource)
