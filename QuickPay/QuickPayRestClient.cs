@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Text;
 using RestSharp;
+using Quickpay.Util;
 
 namespace Quickpay
 {
@@ -28,7 +29,7 @@ namespace Quickpay
         public QuickPayRestClient(string apikey)
         {
 			Client = new RestClient ("https://api.quickpay.net/");
-			Client.AddDefaultParameter("Authorization", string.Format("Basic {0}", ToSecret(":" + apikey)));
+			Client.AddDefaultParameter("Authorization", string.Format("Basic {0}", apikey.ToSecret ()));
         }
 
         private RestRequest CreateRequest(string resource)
@@ -55,7 +56,7 @@ namespace Quickpay
 			request.AddParameter ("page", page);
 			request.AddParameter ("page_size", pageSize);
 			if(accountType != AccountType.Any)
-			  request.AddParameter ("account_type", GetName(accountType));
+				request.AddParameter ("account_type", accountType.GetName());
             request.Method = Method.GET;
 
             var response =  Client.Execute<List<AclResource>>(request);
@@ -64,22 +65,12 @@ namespace Quickpay
             return response.Data;
         }
 
-		private string GetName(AccountType value)
-		{
-			return Enum.GetName (typeof(AccountType), value);
-		}
-
-					private static string ToSecret(string apikey)
-					{
-						return Convert.ToBase64String(Encoding.UTF8.GetBytes(apikey));
-					}
-
+	
 		private List<HttpStatusCode> OkStatusCodes = new List<HttpStatusCode>(){
 			HttpStatusCode.OK,
 			HttpStatusCode.Created,
 			HttpStatusCode.Accepted
 		};
-
         private void VerifyResponse<T>(IRestResponse<T> response)
         {
 			if (!OkStatusCodes.Contains(response.StatusCode))
