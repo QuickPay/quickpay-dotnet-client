@@ -39,14 +39,10 @@ namespace Quickpay
 
 		public PingResponse Ping ()
 		{
-			var request = CreateRequest ("ping");
-
-			var response = Client.Execute<PingResponse> (request);
-			VerifyResponse (response);
-			return response.Data;
+			return CallEndpoint<PingResponse> ("ping");
 		}
 
-		public async Task<List<AclResource>> AclResourcesAsync (AccountType accountType = AccountType.Any, int page = 1,
+		public List<AclResource> AclResources (AccountType accountType = AccountType.Any, int page = 1,
 		                                                       int pageSize = 20)
 		{
 			Action<RestRequest> prepareRequest = (RestRequest request) => {
@@ -72,7 +68,6 @@ namespace Quickpay
 		{
 			return CallEndpoint<List<AcquirerStatus>> ("operational-status/acquirers");
 		}
-
 
 		private T CallEndpoint<T> (string endpointName, Action<RestRequest> prepareRequest = null) where T: new()
 		{
