@@ -68,33 +68,29 @@ namespace Quickpay
 
         public List<Payment> Payments()
         {
-			var request = CreateRequest("payments");
-
-			var response = Client.Execute<List<Payment>>(request);
-
-            VerifyResponse (response);
-			return response.Data;
+			return CallEndpoint<List<Payment>>("payments");
         }
 
 
 		public List<Activity> Activity()
 		{
-			var request = CreateRequest("activity");
-
-			var response = Client.Execute<List<Activity>>(request);
-
-			VerifyResponse (response);
-			return response.Data;
+			return CallEndpoint<List<Activity>>("activity");
 		}
 
 		public List<AcquirerStatus> AcquirerOperationalStatus()
 		{
-			var request = CreateRequest("operational-status/acquirers");
+			return CallEndpoint<List<AcquirerStatus>>("operational-status/acquirers");
+		}
 
-			var response = Client.Execute<List<AcquirerStatus>>(request);
+
+		private T CallEndpoint<T>(string endpointName) where T: new()
+		{
+			var request = CreateRequest(endpointName);
+
+			var response = Client.Execute<T>(request);
 
 			VerifyResponse (response);
-			return response.Data;
+			return response.Data;	
 		}
 
         private List<HttpStatusCode> OkStatusCodes = new List<HttpStatusCode>(){
