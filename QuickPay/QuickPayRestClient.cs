@@ -47,23 +47,16 @@ namespace Quickpay
             return response.Data;
         }
 
-        public async Task<List<AclResource>> AclResourcesAsync(AccountType accountType = AccountType.Any, int page = 1,
+		public async Task<List<AclResource>> AclResourcesAsync(AccountType accountType = AccountType.Any, int page = 1,
                                                                int pageSize = 20)
         {
-            var request = CreateRequest("acl-resources");
-            request.AddParameter ("page", page);
-            request.AddParameter ("page_size", pageSize);
-            if(accountType != AccountType.Any)
-                request.AddParameter ("account_type", accountType.GetName());
-            request.Method = Method.GET;
-
-            var tcs = new TaskCompletionSource<List<AclResource>>();
-            Client.ExecuteAsync<List<AclResource>>(request, response => {
-                    VerifyResponse (response);
-                    tcs.SetResult(response.Data);
-                });
-
-            return tcs.Task.Result;
+			return CallEndpoint<List<AclResource>>("acl-resources",(request) => {
+				request.AddParameter ("page", page);
+				request.AddParameter ("page_size", pageSize);
+				if(accountType != AccountType.Any)
+				request.AddParameter ("account_type", accountType.GetName());
+			}
+			);
         }
 
         public List<Payment> Payments()
@@ -83,9 +76,11 @@ namespace Quickpay
 		}
 
 
-		private T CallEndpoint<T>(string endpointName) where T: new()
+		private T CallEndpoint<T>(string endpointName, Action<RestRequest> prepareRequest = null) where T: new()
 		{
 			var request = CreateRequest(endpointName);
+			if(prepareRequest != null)
+				prepareRequest (request);
 
 			var response = Client.Execute<T>(request);
 
