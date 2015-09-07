@@ -32,5 +32,23 @@ namespace QuickPay.IntegrationTests
 
 			Assert.AreNotEqual (0, result.Count);
         }
+
+		[Test]
+		public void GetsActivity()
+		{
+			var sut = new QuickPayRestClient(QpConfig.Username, QpConfig.Password);
+			var result = sut.Activity();
+
+			Assert.AreNotEqual (0, result.Count);
+		}
+
+		[Test]
+		public void GetsAcquirerOperationalStatus()
+		{
+			var sut = new QuickPayRestClient(QpConfig.Username, QpConfig.Password);
+			var result = sut.AcquirerOperationalStatus();
+
+			Assert.AreNotEqual (0, result.Count);
+		}
     }
 }

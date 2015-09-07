@@ -76,6 +76,27 @@ namespace Quickpay
 			return response.Data;
         }
 
+
+		public List<Activity> Activity()
+		{
+			var request = CreateRequest("activity");
+
+			var response = Client.Execute<List<Activity>>(request);
+
+			VerifyResponse (response);
+			return response.Data;
+		}
+
+		public List<AcquirerStatus> AcquirerOperationalStatus()
+		{
+			var request = CreateRequest("operational-status/acquirers");
+
+			var response = Client.Execute<List<AcquirerStatus>>(request);
+
+			VerifyResponse (response);
+			return response.Data;
+		}
+
         private List<HttpStatusCode> OkStatusCodes = new List<HttpStatusCode>(){
             HttpStatusCode.OK,
             HttpStatusCode.Created,
