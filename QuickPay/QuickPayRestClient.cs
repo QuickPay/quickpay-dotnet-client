@@ -9,100 +9,97 @@ using Quickpay.Models;
 
 namespace Quickpay
 {
-    public class QuickPayRestClient
-    {
-        public RestClient Client { get; set; }
-        public const string BASE_URL = "https://api.quickpay.net/";
+	public class QuickPayRestClient
+	{
+		public RestClient Client { get; set; }
 
-        public QuickPayRestClient(string username, string password)
-        {
-            Client = new RestClient(BASE_URL)
-                {
-                    Authenticator = new HttpBasicAuthenticator(username, password),
-					UserAgent = "QuickPay .Net client"
-                };
-        }
+		public const string BASE_URL = "https://api.quickpay.net/";
 
-        public QuickPayRestClient(string apikey)
-        {
-			Client = new RestClient(BASE_URL)
-			{
-				Authenticator = new HttpBasicAuthenticator(string.Empty, apikey)
+		public QuickPayRestClient (string username, string password)
+		{
+			Client = new RestClient (BASE_URL) {
+				Authenticator = new HttpBasicAuthenticator (username, password),
+				UserAgent = "QuickPay .Net client"
 			};
-        }
+		}
 
-        private RestRequest CreateRequest(string resource)
-        {
-            var request = new RestRequest(resource);
-            request.AddHeader("Accept-Version", "v10");
-            return request;
-        }
+		public QuickPayRestClient (string apikey)
+		{
+			Client = new RestClient (BASE_URL) {
+				Authenticator = new HttpBasicAuthenticator (string.Empty, apikey)
+			};
+		}
 
-        public PingResponse Ping()
-        {
-            var request = CreateRequest("ping");
+		private RestRequest CreateRequest (string resource)
+		{
+			var request = new RestRequest (resource);
+			request.AddHeader ("Accept-Version", "v10");
+			return request;
+		}
 
-            var response = Client.Execute<PingResponse> (request);
-            VerifyResponse (response);
-            return response.Data;
-        }
+		public PingResponse Ping ()
+		{
+			var request = CreateRequest ("ping");
 
-		public async Task<List<AclResource>> AclResourcesAsync(AccountType accountType = AccountType.Any, int page = 1,
-                                                               int pageSize = 20)
-        {
-			return CallEndpoint<List<AclResource>>("acl-resources",(request) => {
+			var response = Client.Execute<PingResponse> (request);
+			VerifyResponse (response);
+			return response.Data;
+		}
+
+		public async Task<List<AclResource>> AclResourcesAsync (AccountType accountType = AccountType.Any, int page = 1,
+		                                                       int pageSize = 20)
+		{
+			Action<RestRequest> prepareRequest = (RestRequest request) => {
 				request.AddParameter ("page", page);
 				request.AddParameter ("page_size", pageSize);
-				if(accountType != AccountType.Any)
-				request.AddParameter ("account_type", accountType.GetName());
-			}
-			);
-        }
-
-        public List<Payment> Payments()
-        {
-			return CallEndpoint<List<Payment>>("payments");
-        }
-
-
-		public List<Activity> Activity()
-		{
-			return CallEndpoint<List<Activity>>("activity");
+				if (accountType != AccountType.Any)
+					request.AddParameter ("account_type", accountType.GetName ());
+			}; 
+			return CallEndpoint<List<AclResource>> ("acl-resources", prepareRequest);
 		}
 
-		public List<AcquirerStatus> AcquirerOperationalStatus()
+		public List<Payment> Payments ()
 		{
-			return CallEndpoint<List<AcquirerStatus>>("operational-status/acquirers");
+			return CallEndpoint<List<Payment>> ("payments");
+		}
+
+		public List<Activity> Activity ()
+		{
+			return CallEndpoint<List<Activity>> ("activity");
+		}
+
+		public List<AcquirerStatus> AcquirerOperationalStatus ()
+		{
+			return CallEndpoint<List<AcquirerStatus>> ("operational-status/acquirers");
 		}
 
 
-		private T CallEndpoint<T>(string endpointName, Action<RestRequest> prepareRequest = null) where T: new()
+		private T CallEndpoint<T> (string endpointName, Action<RestRequest> prepareRequest = null) where T: new()
 		{
-			var request = CreateRequest(endpointName);
-			if(prepareRequest != null)
+			var request = CreateRequest (endpointName);
+			if (prepareRequest != null)
 				prepareRequest (request);
 
-			var response = Client.Execute<T>(request);
+			var response = Client.Execute<T> (request);
 
 			VerifyResponse (response);
 			return response.Data;	
 		}
 
-        private List<HttpStatusCode> OkStatusCodes = new List<HttpStatusCode>(){
-            HttpStatusCode.OK,
-            HttpStatusCode.Created,
-            HttpStatusCode.Accepted
-        };
+		private List<HttpStatusCode> OkStatusCodes = new List<HttpStatusCode> () {
+			HttpStatusCode.OK,
+			HttpStatusCode.Created,
+			HttpStatusCode.Accepted
+		};
 
-        private void VerifyResponse<T>(IRestResponse<T> response)
-        {
+		private void VerifyResponse<T> (IRestResponse<T> response)
+		{
 			if (response.StatusCode == HttpStatusCode.NotFound) {
 				throw new Exception ("Endpoint not found, please note this could mean you are not authorized to access this endpoint");
 			}
-            if (!OkStatusCodes.Contains(response.StatusCode))
-            {
-                throw new Exception(response.StatusDescription);
-            }
-        }
-    }
+			if (!OkStatusCodes.Contains (response.StatusCode)) {
+				throw new Exception (response.StatusDescription);
+			}
+		}
+	}
 }
