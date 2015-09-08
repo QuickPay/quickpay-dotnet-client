@@ -89,26 +89,29 @@ namespace Quickpay
 			return CallEndpoint<List<Agreement>> ("agreements", prepareRequest);
 		}
 
-		public List<Payment> Payments (PageParameters? pageParameters = null)
+		public List<Payment> Payments (PageParameters? pageParameters = null, SortingParameters? sortingParameters = null)
 		{
 			Action<RestRequest> prepareRequest = (RestRequest request) => {
 				AddPagingParameters (pageParameters, request);
+				AddSortingParameters(sortingParameters, request);
 			};
 			return CallEndpoint<List<Payment>> ("payments", prepareRequest);
 		}
 
-		public List<Branding> Branding (PageParameters? pageParameters = null)
+		public List<Branding> Branding (PageParameters? pageParameters = null, SortingParameters? sortingParameters = null)
 		{
 			Action<RestRequest> prepareRequest = (RestRequest request) => {
 				AddPagingParameters (pageParameters, request);
+				AddSortingParameters(sortingParameters, request);
 			};
 			return CallEndpoint<List<Branding>> ("brandings", prepareRequest);
 		}
 
-		public List<Activity> Activity (PageParameters? pageParameters = null)
+		public List<Activity> Activity (PageParameters? pageParameters = null, SortingParameters? sortingParameters = null)
 		{
 			Action<RestRequest> prepareRequest = (RestRequest request) => {
 				AddPagingParameters (pageParameters, request);
+				AddSortingParameters(sortingParameters, request);
 			};
 			return CallEndpoint<List<Activity>> ("activity", prepareRequest);
 		}
