@@ -15,7 +15,7 @@ namespace Quickpay
 
 	public class QuickPayRestClient
 	{
-		private RestClient Client { get; set; }
+		protected RestClient Client { get; set; }
 
 		public const string BASE_URL = "https://api.quickpay.net/";
 
@@ -27,12 +27,8 @@ namespace Quickpay
 			};
 		}
 
-		public QuickPayRestClient (string apikey)
-		{
-			Client = new RestClient (BASE_URL) {
-				Authenticator = new HttpBasicAuthenticator (string.Empty, apikey)
-			};
-		}
+		public QuickPayRestClient (string apikey) : this(string.Empty, apikey)
+		{		}
 
 		public PingResponse Ping ()
 		{
@@ -96,7 +92,7 @@ namespace Quickpay
 			return CallEndpoint<List<AcquirerStatus>> ("operational-status/acquirers");
 		}
 
-		private RestRequest CreateRequest (string resource)
+		protected RestRequest CreateRequest (string resource)
 		{
 			var request = new RestRequest (resource);
 			request.AddHeader ("Accept-Version", "v10");
@@ -104,7 +100,7 @@ namespace Quickpay
 			return request;
 		}
 
-		private void AddPagingParameters (PageParameters? pageParameters, RestRequest request)
+		protected void AddPagingParameters (PageParameters? pageParameters, RestRequest request)
 		{
 			if (pageParameters == null)
 				return;
@@ -112,7 +108,7 @@ namespace Quickpay
 			request.AddParameter ("page_size", pageParameters.Value.PageSize);
 		}
 
-		private void AddSortingParameters (SortingParameters? sortingParameters, RestRequest request)
+		protected void AddSortingParameters (SortingParameters? sortingParameters, RestRequest request)
 		{
 			if (sortingParameters == null)
 				return;
@@ -124,25 +120,24 @@ namespace Quickpay
 			request.AddParameter ("sort_dir", sortingParameters.Value.SortDirection.GetName ());
 		}
 
-		private T CallEndpoint<T> (string endpointName, Action<RestRequest> prepareRequest = null) where T: new()
+		protected T CallEndpoint<T> (string endpointName, Action<RestRequest> prepareRequest = null) where T: new()
 		{
 			var request = CreateRequest (endpointName);
 			if (prepareRequest != null)
 				prepareRequest (request);
 
 			var response = Client.Execute<T> (request);
-
 			VerifyResponse (response);
 			return response.Data;	
 		}
 
-		private List<HttpStatusCode> OkStatusCodes = new List<HttpStatusCode> () {
+		protected List<HttpStatusCode> OkStatusCodes = new List<HttpStatusCode> () {
 			HttpStatusCode.OK,
 			HttpStatusCode.Created,
 			HttpStatusCode.Accepted
 		};
 
-		private void VerifyResponse<T> (IRestResponse<T> response)
+		protected void VerifyResponse<T> (IRestResponse<T> response)
 		{
 			if (response.StatusCode == HttpStatusCode.NotFound) {
 				throw new Exception ("Endpoint not found, please note this could mean you are not authorized to access this endpoint");
