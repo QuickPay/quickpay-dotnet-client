@@ -9,7 +9,7 @@ using Quickpay.Models;
 
 namespace Quickpay
 {
-	// TODO make async endpoints 
+	// TODO make async endpoints
 
 	public class QuickPayRestClient
 	{
@@ -36,7 +36,7 @@ namespace Quickpay
 		{
 			var request = new RestRequest (resource);
 			request.AddHeader ("Accept-Version", "v10");
-			request.AddHeader("accept", "application/json, text/plain, */*");
+			request.AddHeader ("accept", "application/json, text/plain, */*");
 			return request;
 		}
 
@@ -45,19 +45,15 @@ namespace Quickpay
 			return CallEndpoint<PingResponse> ("ping");
 		}
 
-		public Account Account()
+		public Account Account ()
 		{
 			return CallEndpoint<Account> ("account");
 		}
 
 		public List<AclResource> AclResources (AccountType accountType = AccountType.Any, PageParameters? pageParameters = null)
 		{
-			if (pageParameters == null)
-				pageParameters = new PageParameters ();
-
 			Action<RestRequest> prepareRequest = (RestRequest request) => {
-				request.AddParameter ("page", pageParameters.Value.Page);
-				request.AddParameter ("page_size", pageParameters.Value.PageSize);
+				AddPagingParameters(pageParameters, request);
 				if (accountType != AccountType.Any)
 					request.AddParameter ("account_type", accountType.GetName ());
 			}; 
@@ -65,9 +61,20 @@ namespace Quickpay
 			return CallEndpoint<List<AclResource>> ("acl-resources", prepareRequest);
 		}
 
-		public List<Agreement> Agreements()
+		private void AddPagingParameters (PageParameters? pageParameters, RestRequest request)
 		{
-			return CallEndpoint<List<Agreement>> ("agreements");
+			if (pageParameters == null)
+				pageParameters = new PageParameters ();
+			request.AddParameter ("page", pageParameters.Value.Page);
+			request.AddParameter ("page_size", pageParameters.Value.PageSize);
+		}
+
+		public List<Agreement> Agreements (PageParameters? pageParameters = null)
+		{
+			Action<RestRequest> prepareRequest = (RestRequest request) => {
+				AddPagingParameters(pageParameters, request);
+			}; 
+			return CallEndpoint<List<Agreement>> ("agreements", prepareRequest);
 		}
 
 		public List<Payment> Payments ()
@@ -75,7 +82,7 @@ namespace Quickpay
 			return CallEndpoint<List<Payment>> ("payments");
 		}
 
-		public List<Branding> Branding()
+		public List<Branding> Branding ()
 		{
 			return CallEndpoint<List<Branding>> ("brandings");
 		}
@@ -121,14 +128,18 @@ namespace Quickpay
 
 	public struct PageParameters
 	{
-		public PageParameters () : this(1, 20){}
+		public PageParameters () : this (1, 20)
+		{
+		}
 
 		public PageParameters (int page, int pageSize)
 		{
 			Page = page;
 			PageSize = pageSize;
 		}
-		public int Page { get; set;}
-		public int PageSize { get; set;}
+
+		public int Page { get; set; }
+
+		public int PageSize { get; set; }
 	}
 }
