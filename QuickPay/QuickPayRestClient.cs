@@ -11,6 +11,7 @@ using Quickpay.Models;
 namespace Quickpay
 {
 	// TODO make async endpoints
+	// TODO add to nuget
 
 	public class QuickPayRestClient
 	{
@@ -118,6 +119,7 @@ namespace Quickpay
 
 			if (sortingParameters.Value.SortBy == String.Empty)
 				throw new ArgumentException ("sort_by cannot be empty");
+
 			request.AddParameter ("sort_by", sortingParameters.Value.SortBy);
 			request.AddParameter ("sort_dir", sortingParameters.Value.SortDirection.GetName ());
 		}
