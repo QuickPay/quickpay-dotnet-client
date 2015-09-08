@@ -53,7 +53,7 @@ namespace Quickpay
 		public List<AclResource> AclResources (AccountType accountType = AccountType.Any, PageParameters? pageParameters = null)
 		{
 			Action<RestRequest> prepareRequest = (RestRequest request) => {
-				AddPagingParameters(pageParameters, request);
+				AddPagingParameters (pageParameters, request);
 				if (accountType != AccountType.Any)
 					request.AddParameter ("account_type", accountType.GetName ());
 			}; 
@@ -64,15 +64,27 @@ namespace Quickpay
 		private void AddPagingParameters (PageParameters? pageParameters, RestRequest request)
 		{
 			if (pageParameters == null)
-				pageParameters = new PageParameters ();
+				return;
 			request.AddParameter ("page", pageParameters.Value.Page);
 			request.AddParameter ("page_size", pageParameters.Value.PageSize);
 		}
 
-		public List<Agreement> Agreements (PageParameters? pageParameters = null)
+		private void AddSortingParameters (SortingParameters? sortingParameters, RestRequest request)
+		{
+			if (sortingParameters == null)
+				return;
+
+			if (sortingParameters.Value.SortBy == String.Empty)
+				throw new ArgumentException ("sort_by cannot be empty");
+			request.AddParameter ("sort_by", sortingParameters.Value.SortBy);
+			request.AddParameter ("sort_dir", sortingParameters.Value.SortDirection.GetName ());
+		}
+
+		public List<Agreement> Agreements (PageParameters? pageParameters = null, SortingParameters? sortingParameters = null)
 		{
 			Action<RestRequest> prepareRequest = (RestRequest request) => {
-				AddPagingParameters(pageParameters, request);
+				AddPagingParameters (pageParameters, request);
+				AddSortingParameters(sortingParameters, request);
 			}; 
 			return CallEndpoint<List<Agreement>> ("agreements", prepareRequest);
 		}
@@ -80,7 +92,7 @@ namespace Quickpay
 		public List<Payment> Payments (PageParameters? pageParameters = null)
 		{
 			Action<RestRequest> prepareRequest = (RestRequest request) => {
-				AddPagingParameters(pageParameters, request);
+				AddPagingParameters (pageParameters, request);
 			};
 			return CallEndpoint<List<Payment>> ("payments", prepareRequest);
 		}
@@ -88,7 +100,7 @@ namespace Quickpay
 		public List<Branding> Branding (PageParameters? pageParameters = null)
 		{
 			Action<RestRequest> prepareRequest = (RestRequest request) => {
-				AddPagingParameters(pageParameters, request);
+				AddPagingParameters (pageParameters, request);
 			};
 			return CallEndpoint<List<Branding>> ("brandings", prepareRequest);
 		}
@@ -150,5 +162,30 @@ namespace Quickpay
 		public int Page { get; set; }
 
 		public int PageSize { get; set; }
+	}
+
+	public enum SortDirection
+	{
+asc,
+		desc
+
+	}
+
+	public struct SortingParameters
+	{
+		public SortingParameters () : this (string.Empty, SortDirection.desc)
+		{
+
+		}
+
+		public SortingParameters (string sortBy, SortDirection sortDirection)
+		{
+			SortBy = sortBy;		
+			SortDirection = sortDirection;		
+		}
+
+		public string SortBy { get; set; }
+
+		public SortDirection SortDirection { get; set; }
 	}
 }

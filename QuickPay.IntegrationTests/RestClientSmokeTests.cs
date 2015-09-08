@@ -45,7 +45,7 @@ namespace QuickPay.IntegrationTests
         public void GetsAgreements()
         {
 			var sut = new QuickPayRestClient(QpConfig.ApiKey);
-			var result = sut.Agreements();
+			var result = sut.Agreements(null, new SortingParameters{SortDirection = SortDirection.asc, SortBy = "id"});
 
 			Assert.AreNotEqual (0, result.Count);
         }
