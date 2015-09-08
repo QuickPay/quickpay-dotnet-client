@@ -67,6 +67,7 @@
     <Compile Include="Models\PingResponse.cs" />
     <Compile Include="Models\activity.cs" />
     <Compile Include="Models\acquiererstatus.cs" />
+    <Compile Include="Models\Account.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

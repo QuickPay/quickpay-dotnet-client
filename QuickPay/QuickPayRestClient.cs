@@ -9,6 +9,8 @@ using Quickpay.Models;
 
 namespace Quickpay
 {
+	// TODO make async endpoints 
+
 	public class QuickPayRestClient
 	{
 		public RestClient Client { get; set; }
@@ -34,12 +36,18 @@ namespace Quickpay
 		{
 			var request = new RestRequest (resource);
 			request.AddHeader ("Accept-Version", "v10");
+			request.AddHeader("accept", "application/json, text/plain, */*");
 			return request;
 		}
 
 		public PingResponse Ping ()
 		{
 			return CallEndpoint<PingResponse> ("ping");
+		}
+
+		public Account Account()
+		{
+			return CallEndpoint<Account> ("account");
 		}
 
 		public List<AclResource> AclResources (AccountType accountType = AccountType.Any, PageParameters? pageParameters = null)

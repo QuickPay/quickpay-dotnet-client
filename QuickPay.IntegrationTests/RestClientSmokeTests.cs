@@ -15,6 +15,14 @@ namespace QuickPay.IntegrationTests
             StringAssert.Contains("Pong", result.Msg);
         }
 
+		[Test]
+		public void CanGetAccountInformation()
+		{
+			var sut = new QuickPayRestClient(QpConfig.ApiKey);
+			var result = sut.Account();
+			Assert.AreNotEqual(null, result);
+		}
+
         [Test]
         public void CanGetAclResources()
         {
