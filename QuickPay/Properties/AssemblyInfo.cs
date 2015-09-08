@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("Quickpay")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Quickpay dotnet client")]
+[assembly: AssemblyDescription("QuickPay dotnet client")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Quickpay")]
