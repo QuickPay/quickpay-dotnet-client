@@ -42,15 +42,18 @@ namespace Quickpay
 			return CallEndpoint<PingResponse> ("ping");
 		}
 
-		public List<AclResource> AclResources (AccountType accountType = AccountType.Any, int page = 1,
-		                                                       int pageSize = 20)
+		public List<AclResource> AclResources (AccountType accountType = AccountType.Any, PageParameters? pageParameters = null)
 		{
+			if (pageParameters == null)
+				pageParameters = new PageParameters ();
+
 			Action<RestRequest> prepareRequest = (RestRequest request) => {
-				request.AddParameter ("page", page);
-				request.AddParameter ("page_size", pageSize);
+				request.AddParameter ("page", pageParameters.Value.Page);
+				request.AddParameter ("page_size", pageParameters.Value.PageSize);
 				if (accountType != AccountType.Any)
 					request.AddParameter ("account_type", accountType.GetName ());
 			}; 
+
 			return CallEndpoint<List<AclResource>> ("acl-resources", prepareRequest);
 		}
 
@@ -96,5 +99,18 @@ namespace Quickpay
 				throw new Exception (response.StatusDescription);
 			}
 		}
+	}
+
+	public struct PageParameters
+	{
+		public PageParameters () : this(1, 20){}
+
+		public PageParameters (int page, int pageSize)
+		{
+			Page = page;
+			PageSize = pageSize;
+		}
+		public int Page { get; set;}
+		public int PageSize { get; set;}
 	}
 }

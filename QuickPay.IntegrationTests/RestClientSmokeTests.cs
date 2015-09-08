@@ -16,10 +16,10 @@ namespace QuickPay.IntegrationTests
         }
 
         [Test]
-        public void CanGetAclResourcesAsync()
+        public void CanGetAclResources()
         {
             var sut = new QuickPayRestClient(QpConfig.Username, QpConfig.Password);
-            var result = sut.AclResources(AccountType.Merchant, 1, 90);
+			var result = sut.AclResources(AccountType.Merchant, new PageParameters{Page = 1, PageSize = 20});
             Assert.AreNotEqual(0, result.Count);
             Assert.NotNull(result[0].Description);
         }
