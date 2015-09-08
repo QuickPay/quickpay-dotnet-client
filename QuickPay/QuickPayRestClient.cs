@@ -30,11 +30,6 @@ namespace Quickpay
 		public QuickPayRestClient (string apikey) : this(string.Empty, apikey)
 		{}
 
-		public PingResponse Ping ()
-		{
-			return CallEndpoint<PingResponse> ("ping");
-		}
-
 		protected RestRequest CreateRequest (string resource)
 		{
 			var request = new RestRequest (resource);

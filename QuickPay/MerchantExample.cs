@@ -9,6 +9,8 @@ namespace Quickpay
 {
 	// Please note:
 	// This is only an example implementation, do not use this for production; this class is not updated as new endpoints are created!!!
+	// models are created by inserting a json to this page http://json2csharp.com/#
+
 	[Obsolete ("This is an example class, please do not use in production")]
 	public class MerchantExample : QuickPayRestClient
 	{

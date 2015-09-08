@@ -10,10 +10,26 @@ namespace QuickPay.IntegrationTests
         [Test]
         public void CanPingGetApiWithCredentials()
         {
-            var sut = new QuickPayRestClient(QpConfig.Username, QpConfig.Password);
+			var sut = new PingExample(QpConfig.Username, QpConfig.Password);
             var result = sut.Ping();
             StringAssert.Contains("Pong", result.Msg);
         }
+
+		[Test]
+		public void CanPingPost()
+		{
+			var sut = new PingExample(QpConfig.Username, QpConfig.Password);
+			var result = sut.PingPost();
+			StringAssert.Contains("Pong", result.Msg);
+		}
+
+		[Test]
+		public void CanPingAndGetDictionary()
+		{
+			var sut = new PingExample(QpConfig.Username, QpConfig.Password);
+			var result = sut.PingDictionary();
+			StringAssert.Contains("Pong", result["msg"]);
+		}
 
 		[Test]
 		public void CanGetAccountInformation()

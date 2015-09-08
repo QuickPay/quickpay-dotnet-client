@@ -73,6 +73,7 @@
     <Compile Include="Parameters\PageParameters.cs" />
     <Compile Include="Parameters\SortingParameters.cs" />
     <Compile Include="MerchantExample.cs" />
+    <Compile Include="PingExample.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
