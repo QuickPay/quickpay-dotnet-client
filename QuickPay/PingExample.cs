@@ -36,6 +36,8 @@ namespace Quickpay
 			return CallEndpoint<PingResponse> ("ping", prepareRequest);
 		}
 
+		// please note:
+		// this is not an example of how to do async in .Net!!!
 		public async Task<PingResponse> PingAsync()
 		{
 			return await CallEndpointAsync<PingResponse> ("ping");
