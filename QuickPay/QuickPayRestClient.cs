@@ -35,8 +35,6 @@ namespace Quickpay
 			return CallEndpoint<PingResponse> ("ping");
 		}
 
-
-
 		protected RestRequest CreateRequest (string resource)
 		{
 			var request = new RestRequest (resource);
