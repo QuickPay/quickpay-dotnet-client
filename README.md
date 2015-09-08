@@ -19,7 +19,7 @@ Furthermore a basic implementation of paging and sorting exists.
   
 This base class can be used to call the api.  
   
-You can either create a class with the properties you need to get returned (see `merchantexample.cs`) for examples of this.   
+You can either create a class with the properties you need to get returned, see `merchantexample.cs` for examples of this.   
 Or you can simply return a dictionary from the service, for example of this please see `pingexample.cs`.  
 You can call the service async, please see `pingexample.cs` for an example of this.  
 
