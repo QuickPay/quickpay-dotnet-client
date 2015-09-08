@@ -6,7 +6,7 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <licenseUrl>https://github.com/QuickPay/quickpay-dotnet-client/blob/master/QuickPay/LICENSE.txt</licenseUrl>
+    <licenseUrl>https://github.com/QuickPay/quickpay-dotnet-client/blob/master/LICENSE.txt</licenseUrl>
     <projectUrl>https://github.com/QuickPay/quickpay-dotnet-client</projectUrl>
     <iconUrl></iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
