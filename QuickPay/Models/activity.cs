@@ -5,10 +5,12 @@ using RestSharp.Deserializers;
 
 namespace Quickpay.Models
 {
+	[Obsolete ("This is an example class, please do not use in production")]
 	public class LinkVariable
 	{
 	}
 
+	[Obsolete ("This is an example class, please do not use in production")]
 	public class Changes
 	{
 		public List<string> link_token { get; set; }
@@ -25,12 +27,14 @@ namespace Quickpay.Models
 		public List<LinkVariable> link_variables { get; set; }
 	}
 
+	[Obsolete ("This is an example class, please do not use in production")]
 	public class Extra
 	{
 		public string path { get; set; }
 		public string user { get; set; }
 	}
 
+	[Obsolete ("This is an example class, please do not use in production")]
 	public class Activity
 	{
 		public string id { get; set; }

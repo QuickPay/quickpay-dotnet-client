@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Quickpay.Models
 {
+	[Obsolete ("This is an example class, please do not use in production")]
 	public class AclPermission
 	{
 		public string resource { get; set; }
@@ -13,6 +14,7 @@ namespace Quickpay.Models
 		public bool patch { get; set; }
 	}
 
+	[Obsolete ("This is an example class, please do not use in production")]
 	public class User
 	{
 		public int id { get; set; }
@@ -21,6 +23,7 @@ namespace Quickpay.Models
 		public string name { get; set; }
 	}
 
+	[Obsolete ("This is an example class, please do not use in production")]
 	public class AgreementAccount
 	{
 		public int id { get; set; }
@@ -28,6 +31,7 @@ namespace Quickpay.Models
 		public string name { get; set; }
 	}
 
+	[Obsolete ("This is an example class, please do not use in production")]
 	public class Agreement
 	{
 		public int id { get; set; }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Quickpay
 {
+	[Obsolete ("This is an example class, please do not use in production")]
 	public class Resource
 	{
 		public string name { get; set; }
@@ -10,6 +11,7 @@ namespace Quickpay
 		public string mime { get; set; }
 	}
 
+	[Obsolete ("This is an example class, please do not use in production")]
 	public class Branding
 	{
 		public int id { get; set; }

@@ -112,6 +112,7 @@ namespace Quickpay.Models
 		public string name { get; set; }
 	}
 
+	[Obsolete ("This is an example class, please do not use in production")]
 	public class Account
 	{
 		public int id { get; set; }

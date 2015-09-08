@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Quickpay
 {
+	[Obsolete ("This is an example class, please do not use in production")]
     public class AclResource
     {
         [JsonProperty(PropertyName = "account_type")]

@@ -3,9 +3,12 @@ using System.Collections.Generic;
 
 namespace Quickpay.Models
 {
+	[Obsolete ("This is an example class, please do not use in production")]
 	public class Data
 	{
 	}
+
+	[Obsolete ("This is an example class, please do not use in production")]
 	public class Operation
 	{
 		public int id { get; set; }
@@ -23,6 +26,7 @@ namespace Quickpay.Models
 		public string created_at { get; set; }
 	}
 
+	[Obsolete ("This is an example class, please do not use in production")]
 	public class Metadata
 	{
 		public string type { get; set; }
@@ -40,6 +44,7 @@ namespace Quickpay.Models
 		public List<object> fraud_remarks { get; set; }
 	}
 
+	[Obsolete ("This is an example class, please do not use in production")]
 	public class Link
 	{
 		public string url { get; set; }
@@ -65,6 +70,7 @@ namespace Quickpay.Models
 		public object customer_email { get; set; }
 	}
 
+	[Obsolete ("This is an example class, please do not use in production")]
 	public class Payment 
 	{
 		public int id { get; set; }
