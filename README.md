@@ -3,7 +3,7 @@
 This assembly currently support QuickPay `v10` api.
 
 ## installation
-via nuget, comming up!!!
+via nuget, comming up!!!  
 
 ## Usage
 
@@ -12,7 +12,7 @@ If you haven't please [click](https://quickpay.net/) here to apply.
 
 ### The base class
 
-This provides a base class for calling the QuickPay API.  
+This client provides a base class for calling the QuickPay API.  
 The base class will set the correct headers and credentials for you to call the service.  
 The base class will also validate the response.  
 Furthermore a basic implementation of paging and sorting exists.  
@@ -23,6 +23,6 @@ You can either create a class with the properties you need to get returned (see 
 Or you can simply return a dictionary from the service, for example of this please see pingexample.cs.  
 You can call the service async, please see pingexample.cs for an example of this.  
 
-## The unit tests
+#### The unit tests
 
 To run the tests you need to set the corresponding environment variables, please see qpconfig.cs for more info.  
