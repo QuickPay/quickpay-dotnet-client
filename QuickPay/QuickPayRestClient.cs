@@ -13,7 +13,7 @@ namespace Quickpay
 {
 	// TODO add to nuget
 
-	public class QuickPayRestClient
+	public abstract class QuickPayRestClient
 	{
 		protected RestClient Client { get; set; }
 
@@ -21,6 +21,9 @@ namespace Quickpay
 
 		public QuickPayRestClient (string username, string password)
 		{
+			if (password == string.Empty) {
+				throw new ArgumentException ("You need to provide either a username / password or an apikey");
+			}
 			Client = new RestClient (BASE_URL) {
 				Authenticator = new HttpBasicAuthenticator (username, password),
 				UserAgent = "QuickPay .Net client"
