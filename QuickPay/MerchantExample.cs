@@ -9,17 +9,17 @@ namespace Quickpay
 {
 	// Please note:
 	// This is only an example implementation, do not use this for production; this class is not updated as new endpoints are created!!!
-	[Obsolete("This is an example class, please do not use in production")]
+	[Obsolete ("This is an example class, please do not use in production")]
 	public class MerchantExample : QuickPayRestClient
 	{
-		public MerchantExample (string username, string password) : base(username, password)
+		public MerchantExample (string username, string password) : base (username, password)
 		{
 		}
 
-		public MerchantExample (string apikey) : base(apikey)
+		public MerchantExample (string apikey) : base (apikey)
 		{
-			
 		}
+
 		public Account Account ()
 		{
 			return CallEndpoint<Account> ("account");
