@@ -150,45 +150,4 @@ namespace Quickpay
 			}
 		}
 	}
-
-	public struct PageParameters
-	{
-		public PageParameters () : this (1, 20)
-		{
-		}
-
-		public PageParameters (int page, int pageSize)
-		{
-			Page = page;
-			PageSize = pageSize;
-		}
-
-		public int Page { get; set; }
-
-		public int PageSize { get; set; }
-	}
-
-	public enum SortDirection
-	{
-		asc,
-		desc
-	}
-
-	public struct SortingParameters
-	{
-		public SortingParameters () : this (string.Empty, SortDirection.desc)
-		{
-
-		}
-
-		public SortingParameters (string sortBy, SortDirection sortDirection)
-		{
-			SortBy = sortBy;		
-			SortDirection = sortDirection;		
-		}
-
-		public string SortBy { get; set; }
-
-		public SortDirection SortDirection { get; set; }
-	}
 }

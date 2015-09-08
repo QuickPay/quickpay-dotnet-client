@@ -70,6 +70,8 @@
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Agreements.cs" />
     <Compile Include="Models\Branding.cs" />
+    <Compile Include="Parameters\PageParameters.cs" />
+    <Compile Include="Parameters\SortingParameters.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -94,5 +96,6 @@
   <ItemGroup>
     <Folder Include="Util\" />
     <Folder Include="Models\" />
+    <Folder Include="Parameters\" />
   </ItemGroup>
 </Project>
