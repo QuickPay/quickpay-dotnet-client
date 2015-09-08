@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using RestSharp;
 using Quickpay;
 using Quickpay.Util;
@@ -35,10 +36,10 @@ namespace Quickpay
 			return CallEndpoint<PingResponse> ("ping", prepareRequest);
 		}
 
-	//	public PingResponse PingAsync()
-	//	{
-	//		return CallEndpoint<PingResponse> ("ping");
-	//	}
+		public async Task<PingResponse> PingAsync()
+		{
+			return await CallEndpointAsync<PingResponse> ("ping");
+		}
 
 		public Dictionary<string, string> PingDictionary()
 		{

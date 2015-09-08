@@ -16,6 +16,14 @@ namespace QuickPay.IntegrationTests
         }
 
 		[Test]
+		public void CanPingAsync()
+		{
+			var sut = new PingExample(QpConfig.Username, QpConfig.Password);
+			var result = sut.PingAsync();
+			StringAssert.Contains("Pong", result.Result.Msg);
+		}
+
+		[Test]
 		public void CanPingPost()
 		{
 			var sut = new PingExample(QpConfig.Username, QpConfig.Password);

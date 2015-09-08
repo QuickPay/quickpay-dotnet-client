@@ -2,6 +2,7 @@
 using System.Net;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Text;
 using RestSharp;
 using RestSharp.Authenticators;
@@ -10,7 +11,6 @@ using Quickpay.Models;
 
 namespace Quickpay
 {
-	// TODO make async endpoints
 	// TODO add to nuget
 
 	public class QuickPayRestClient
@@ -65,6 +65,21 @@ namespace Quickpay
 				prepareRequest (request);
 
 			var response = Client.Execute<T> (request);
+			VerifyResponse (response);
+			return response.Data;	
+		}
+
+
+		protected async Task<T> CallEndpointAsync<T> (string endpointName, Action<RestRequest> prepareRequest = null) where T: new()
+		{
+			var request = CreateRequest (endpointName);
+			if (prepareRequest != null)
+				prepareRequest (request);
+
+			var cancellationTokenSource = new CancellationTokenSource();
+
+			var response = await Client.ExecuteTaskAsync<T>(request, cancellationTokenSource.Token);
+
 			VerifyResponse (response);
 			return response.Data;	
 		}
