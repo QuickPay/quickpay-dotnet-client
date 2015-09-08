@@ -49,6 +49,16 @@ namespace QuickPay.IntegrationTests
 
 			Assert.AreNotEqual (0, result.Count);
         }
+
+		[Test]
+        public void GetsBrandings()
+        {
+			var sut = new QuickPayRestClient(QpConfig.ApiKey);
+			var result = sut.Branding();
+
+			Assert.AreNotEqual (0, result.Count);
+        }
+
 		[Test]
 		public void GetsActivity()
 		{

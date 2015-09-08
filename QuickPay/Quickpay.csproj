@@ -69,6 +69,7 @@
     <Compile Include="Models\acquiererstatus.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Agreements.cs" />
+    <Compile Include="Models\Branding.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

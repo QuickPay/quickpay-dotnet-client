@@ -75,6 +75,11 @@ namespace Quickpay
 			return CallEndpoint<List<Payment>> ("payments");
 		}
 
+		public List<Branding> Branding()
+		{
+			return CallEndpoint<List<Branding>> ("brandings");
+		}
+
 		public List<Activity> Activity ()
 		{
 			return CallEndpoint<List<Activity>> ("activity");
