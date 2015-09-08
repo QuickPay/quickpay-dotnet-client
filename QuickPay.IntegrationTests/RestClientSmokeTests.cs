@@ -42,6 +42,14 @@ namespace QuickPay.IntegrationTests
         }
 
 		[Test]
+        public void GetsAgreements()
+        {
+			var sut = new QuickPayRestClient(QpConfig.ApiKey);
+			var result = sut.Agreements();
+
+			Assert.AreNotEqual (0, result.Count);
+        }
+		[Test]
 		public void GetsActivity()
 		{
 			var sut = new QuickPayRestClient(QpConfig.Username, QpConfig.Password);

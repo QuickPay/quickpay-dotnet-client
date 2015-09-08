@@ -65,6 +65,11 @@ namespace Quickpay
 			return CallEndpoint<List<AclResource>> ("acl-resources", prepareRequest);
 		}
 
+		public List<Agreement> Agreements()
+		{
+			return CallEndpoint<List<Agreement>> ("agreements");
+		}
+
 		public List<Payment> Payments ()
 		{
 			return CallEndpoint<List<Payment>> ("payments");
