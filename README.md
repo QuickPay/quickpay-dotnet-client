@@ -2,8 +2,8 @@
 `quickpay-dotnet-client` is a official client for [QuickPay API](http://tech.quickpay.net/api). The Quickpay API enables you to accept payments in a secure and reliable manner.  
 This assembly currently support QuickPay `v10` api.
 
-## installation
-via nuget, comming up!!!  
+## Installation
+via nuget  
 
 ## Usage
 
