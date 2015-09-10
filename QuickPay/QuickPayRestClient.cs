@@ -11,8 +11,6 @@ using Quickpay.Models;
 
 namespace Quickpay
 {
-	// TODO add to nuget
-
 	public abstract class QuickPayRestClient
 	{
 		protected RestClient Client { get; set; }
