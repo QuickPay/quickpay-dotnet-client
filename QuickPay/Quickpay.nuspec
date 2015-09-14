@@ -14,5 +14,13 @@
     <releaseNotes>This is the initial realease of the QuickPay dotnet client</releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>QuickPay PSP payment creditcard</tags>
+    <dependencies>
+      <dependency id="RestSharp" version="105.2.3"/>
+      <dependency id="NewtonSoft.Json" version="7.0.1"/>
+    </dependencies>
   </metadata>
+   <files>
+	  <file src="./bin/Debug/QuickPay.dll" target="lib" />
+	  <file src="./bin/Debug/QuickPay.dll.mdb" target="lib" />
+  </files>k
 </package>
