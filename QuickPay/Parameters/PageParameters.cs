@@ -4,10 +4,6 @@ namespace Quickpay
 {
 	public struct PageParameters
 	{
-		public PageParameters () : this (1, 20)
-		{
-		}
-
 		public PageParameters (int page, int pageSize)
 		{
 			Page = page;

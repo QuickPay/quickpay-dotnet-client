@@ -10,11 +10,6 @@ namespace Quickpay
 
 	public struct SortingParameters
 	{
-		public SortingParameters () : this (string.Empty, SortDirection.desc)
-		{
-
-		}
-
 		public SortingParameters (string sortBy, SortDirection sortDirection)
 		{
 			SortBy = sortBy;		
