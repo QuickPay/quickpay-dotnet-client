@@ -21,6 +21,6 @@
   </metadata>
    <files>
 	  <file src="./bin/Debug/QuickPay.dll" target="lib" />
-	  <file src="./bin/Debug/QuickPay.dll.mdb" target="lib" />
-  </files>k
+	  <file src="./bin/Debug/QuickPay.pdb" target="lib" />
+  </files>
 </package>
