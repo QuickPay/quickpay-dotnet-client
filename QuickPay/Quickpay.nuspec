@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>QuickPay.API.Client</id>
-    <version>1.0.0.0</version>
+    <version>1.1.0.0</version>
     <title>QuickPay dotnet client</title>
     <authors>QuickPay</authors>
     <owners>QuickPay</owners>
@@ -11,16 +11,15 @@
     <iconUrl>http://tech.quickpay.net/public/gfx/layout/logo-inverse-sm.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>dotnet client for the QuickPay API</description>
-    <releaseNotes>This is the initial realease of the QuickPay dotnet client</releaseNotes>
-    <copyright>Copyright 2015</copyright>
+    <releaseNotes>The QuickPay dotnet client has been updated to use .NET 4.6.2 for TLS 1.2 support</releaseNotes>
+    <copyright>Copyright 2018</copyright>
     <tags>QuickPay PSP payment creditcard</tags>
     <dependencies>
-      <dependency id="RestSharp" version="105.2.3"/>
-      <dependency id="NewtonSoft.Json" version="7.0.1"/>
+      <dependency id="RestSharp" version="106.3.1.0"/>
+      <dependency id="NewtonSoft.Json" version="11.0.2"/>
     </dependencies>
   </metadata>
-   <files>
-	  <file src="./bin/Debug/QuickPay.dll" target="lib" />
-	  <file src="./bin/Debug/QuickPay.pdb" target="lib" />
+  <files>
+    <file src="./obj/release/QuickPay.dll" target="lib" />
   </files>
 </package>
