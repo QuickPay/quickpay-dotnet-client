@@ -3,19 +3,25 @@ using System.Net;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
-using System.Text;
 using RestSharp;
 using RestSharp.Authenticators;
 using Quickpay.Util;
-using Quickpay.Models;
+
 
 namespace Quickpay
 {
 	public abstract class QuickPayRestClient
 	{
+        private const string BASE_URL = "https://api.quickpay.net/";
+
 		protected RestClient Client { get; set; }
 
-		public const string BASE_URL = "https://api.quickpay.net/";
+
+		#region Constructors
+		public QuickPayRestClient(string apikey) : this(string.Empty, apikey)
+		{
+			// NOP
+		}
 
 		public QuickPayRestClient (string username, string password)
 		{
@@ -24,14 +30,13 @@ namespace Quickpay
 			}
 			Client = new RestClient (BASE_URL) {
 				Authenticator = new HttpBasicAuthenticator (username, password),
-				UserAgent = "QuickPay .Net client"
+				UserAgent = "QuickPay .Net Framework 4.8 Client"
 			};
 		}
+        #endregion
 
-		public QuickPayRestClient (string apikey) : this(string.Empty, apikey)
-		{}
 
-		protected RestRequest CreateRequest (string resource)
+        protected RestRequest CreateRequest (string resource)
 		{
 			var request = new RestRequest (resource);
 			request.AddHeader ("Accept-Version", "v10");
@@ -78,8 +83,8 @@ namespace Quickpay
 				prepareRequest (request);
 
 			var cancellationTokenSource = new CancellationTokenSource();
-
-			var response = await Client.ExecuteTaskAsync<T>(request, cancellationTokenSource.Token);
+		
+			var response = await Client.ExecuteAsync<T>(request, cancellationTokenSource.Token);
 
 			VerifyResponse (response);
 			return response.Data;	

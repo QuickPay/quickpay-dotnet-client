@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using NUnit.Framework;
 using Quickpay;
 
@@ -7,37 +7,31 @@ namespace QuickPay.IntegrationTests
     [TestFixture]
     public class RestClientSmokeTests
     {
-        [Test]
-        public void CanPingGetApiWithCredentials()
-        {
-			var sut = new PingExample(QpConfig.Username, QpConfig.Password);
-            var result = sut.Ping();
-            StringAssert.Contains("Pong", result.Msg);
-        }
-
 		[Test]
-		public void CanPingAsync()
+		public void CanPingGetSync()
 		{
-			var sut = new PingExample(QpConfig.Username, QpConfig.Password);
-			var result = sut.PingAsync();
-			StringAssert.Contains("Pong", result.Result.Msg);
-		}
-
-		[Test]
-		public void CanPingPost()
-		{
-			var sut = new PingExample(QpConfig.Username, QpConfig.Password);
-			var result = sut.PingPost();
+			var sut = new PingExample(QpConfig.ApiKey);
+			var result = sut.GetPing();
 			StringAssert.Contains("Pong", result.Msg);
 		}
 
 		[Test]
-		public void CanPingAndGetDictionary()
+		public async Task CanPingGetAsync()
 		{
-			var sut = new PingExample(QpConfig.Username, QpConfig.Password);
-			var result = sut.PingDictionary();
-			StringAssert.Contains("Pong", result["msg"]);
+			var sut = new PingExample(QpConfig.ApiKey);
+			var result = await sut.GetPingAsync();
+			StringAssert.Contains("Pong", result.Msg);
 		}
+
+		[Test]
+		public void CanPingPostSync()
+		{
+			var sut = new PingExample(QpConfig.ApiKey);
+			var result = sut.PostPing();
+			StringAssert.Contains("Pong", result.Msg);
+		}
+
+
 
 		[Test]
 		public void CanGetAccountInformation()
@@ -50,7 +44,7 @@ namespace QuickPay.IntegrationTests
         [Test]
         public void CanGetAclResources()
         {
-            var sut = new MerchantExample(QpConfig.Username, QpConfig.Password);
+            var sut = new MerchantExample(QpConfig.ApiKey);
 			var result = sut.AclResources(AccountType.Merchant, new PageParameters{Page = 1, PageSize = 20});
             Assert.AreNotEqual(0, result.Count);
             Assert.NotNull(result[0].Description);
@@ -86,7 +80,7 @@ namespace QuickPay.IntegrationTests
 		[Test]
 		public void GetsActivity()
 		{
-			var sut = new MerchantExample(QpConfig.Username, QpConfig.Password);
+			var sut = new MerchantExample(QpConfig.ApiKey);
 			var result = sut.Activity();
 
 			Assert.AreNotEqual (0, result.Count);
@@ -95,7 +89,7 @@ namespace QuickPay.IntegrationTests
 		[Test]
 		public void GetsAcquirerOperationalStatus()
 		{
-			var sut = new MerchantExample(QpConfig.Username, QpConfig.Password);
+			var sut = new MerchantExample(QpConfig.ApiKey);
 			var result = sut.AcquirerOperationalStatus();
 
 			Assert.AreNotEqual (0, result.Count);
