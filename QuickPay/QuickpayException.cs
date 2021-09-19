@@ -4,7 +4,7 @@ using System.Net;
 namespace Quickpay
 {
     /// <summary>
-    ///     Quick pay exception
+    ///     QuickPay Exception
     /// </summary>
     public class QuickpayException : Exception
     {
