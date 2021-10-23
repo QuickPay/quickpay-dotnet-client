@@ -71,6 +71,7 @@ namespace Quickpay
 				prepareRequest (request);
 
 			var response = Client.Execute<T> (request);
+			Console.WriteLine(response.Content);
 			VerifyResponse (response);
 			return response.Data;	
 		}

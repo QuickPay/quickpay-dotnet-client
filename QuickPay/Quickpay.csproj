@@ -75,9 +75,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Account\Settings\Bambora.cs" />
+    <Compile Include="Models\Account\PrivateKey.cs" />
+    <Compile Include="Models\Account\Settings\Clearhaus.cs" />
+    <Compile Include="Models\Account\Settings\Coinify.cs" />
+    <Compile Include="Models\Account\Settings\Elavon.cs" />
+    <Compile Include="Models\Account\Settings\Handelsbanken.cs" />
+    <Compile Include="Models\Account\Settings\Klarna.cs" />
+    <Compile Include="Models\Account\Settings\KlarnaPayments.cs" />
+    <Compile Include="Models\Account\Settings\MobilePay.cs" />
+    <Compile Include="Models\Account\Settings\MobilePayOnline.cs" />
+    <Compile Include="Models\Account\Settings\MobilePaySubscriptions.cs" />
+    <Compile Include="Models\Account\Settings\Nets.cs" />
+    <Compile Include="Models\Account\Settings\PayPal.cs" />
+    <Compile Include="Models\Account\Settings\Paysafecard.cs" />
+    <Compile Include="Models\Account\Settings\Resurs.cs" />
+    <Compile Include="Models\Account\Settings\Sofort.cs" />
+    <Compile Include="Models\Account\Settings\Swedbank.cs" />
+    <Compile Include="Models\Account\Settings\Swish.cs" />
+    <Compile Include="Models\Account\Settings\Teller.cs" />
+    <Compile Include="Models\Account\Settings\Trustly.cs" />
+    <Compile Include="Models\Account\Settings\Valitor.cs" />
+    <Compile Include="Models\Account\Settings\ViaBill.cs" />
+    <Compile Include="Models\Account\Settings\Vipps.cs" />
+    <Compile Include="Models\Account\Zero4PlatformSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuickpayException.cs" />
     <Compile Include="QuickPayRestClient.cs" />
+    <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\AcquirersService.cs" />
     <Compile Include="Util\EnumExtensions.cs" />
     <Compile Include="Models\payment.cs" />
     <Compile Include="Models\AclResource.cs" />
@@ -90,11 +116,10 @@
     <Compile Include="Models\Branding.cs" />
     <Compile Include="Parameters\PageParameters.cs" />
     <Compile Include="Parameters\SortingParameters.cs" />
-    <Compile Include="MerchantExample.cs" />
     <Compile Include="PingExample.cs" />
-    <Compile Include="Models\Account\Account.cs" />
+    <Compile Include="Models\Account\Merchant.cs" />
     <Compile Include="Models\Account\Address.cs" />
-    <Compile Include="Models\Account\AcquirerSettings.cs" />
+    <Compile Include="Models\Account\Settings\AcquirerSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Quickpay.nuspec" />
