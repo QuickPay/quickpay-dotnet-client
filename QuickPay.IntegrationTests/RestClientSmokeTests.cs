@@ -1,39 +1,37 @@
 ﻿using System.Threading.Tasks;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Quickpay;
 
 namespace QuickPay.IntegrationTests
 {
-    [TestFixture]
+    [TestClass]
     public class RestClientSmokeTests
     {
-		[Test]
+		[TestMethod]
 		public void CanPingGetSync()
 		{
 			var sut = new PingExample(QpConfig.ApiKey);
 			var result = sut.GetPing();
-			StringAssert.Contains("Pong", result.Msg);
+			StringAssert.Contains(result.Msg, "Pong");
 		}
 
-		[Test]
+		[TestMethod]
 		public async Task CanPingGetAsync()
 		{
 			var sut = new PingExample(QpConfig.ApiKey);
 			var result = await sut.GetPingAsync();
-			StringAssert.Contains("Pong", result.Msg);
+			StringAssert.Contains(result.Msg, "Pong");
 		}
 
-		[Test]
+		[TestMethod]
 		public void CanPingPostSync()
 		{
 			var sut = new PingExample(QpConfig.ApiKey);
 			var result = sut.PostPing();
-			StringAssert.Contains("Pong", result.Msg);
+			StringAssert.Contains(result.Msg, "Pong");
 		}
 
-
-
-		[Test]
+		[TestMethod]
 		public void CanGetAccountInformation()
 		{
 			var sut = new MerchantExample(QpConfig.ApiKey);
@@ -41,16 +39,16 @@ namespace QuickPay.IntegrationTests
 			Assert.AreNotEqual(null, result);
 		}
 
-        [Test]
+        [TestMethod]
         public void CanGetAclResources()
         {
             var sut = new MerchantExample(QpConfig.ApiKey);
 			var result = sut.AclResources(AccountType.Merchant, new PageParameters{Page = 1, PageSize = 20});
             Assert.AreNotEqual(0, result.Count);
-            Assert.NotNull(result[0].Description);
+			Assert.IsNotNull(result[0].Description);
         }
 
-        [Test]
+        [TestMethod]
         public void GetsPayments()
         {
 			var sut = new MerchantExample(QpConfig.ApiKey);
@@ -59,7 +57,7 @@ namespace QuickPay.IntegrationTests
 			Assert.AreNotEqual (0, result.Count);
         }
 
-		[Test]
+		[TestMethod]
         public void GetsAgreements()
         {
 			var sut = new MerchantExample(QpConfig.ApiKey);
@@ -68,16 +66,14 @@ namespace QuickPay.IntegrationTests
 			Assert.AreNotEqual (0, result.Count);
         }
 
-		[Test]
+		[TestMethod]
         public void GetsBrandings()
         {
 			var sut = new MerchantExample(QpConfig.ApiKey);
 			var result = sut.Branding();
-
-			Assert.Pass();
         }
 
-		[Test]
+		[TestMethod]
 		public void GetsActivity()
 		{
 			var sut = new MerchantExample(QpConfig.ApiKey);
@@ -86,7 +82,7 @@ namespace QuickPay.IntegrationTests
 			Assert.AreNotEqual (0, result.Count);
 		}
 
-		[Test]
+		[TestMethod]
 		public void GetsAcquirerOperationalStatus()
 		{
 			var sut = new MerchantExample(QpConfig.ApiKey);
