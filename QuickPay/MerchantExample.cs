@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using RestSharp;
 using Quickpay.Util;
 using Quickpay.Models;
+using Quickpay.Models.Account;
 
 namespace Quickpay
 {

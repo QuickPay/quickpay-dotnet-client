@@ -67,13 +67,15 @@
     <Compile Include="Models\PingResponse.cs" />
     <Compile Include="Models\activity.cs" />
     <Compile Include="Models\acquiererstatus.cs" />
-    <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Agreements.cs" />
     <Compile Include="Models\Branding.cs" />
     <Compile Include="Parameters\PageParameters.cs" />
     <Compile Include="Parameters\SortingParameters.cs" />
     <Compile Include="MerchantExample.cs" />
     <Compile Include="PingExample.cs" />
+    <Compile Include="Models\Account\Account.cs" />
+    <Compile Include="Models\Account\Address.cs" />
+    <Compile Include="Models\Account\AcquirerSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Quickpay.nuspec" />
@@ -95,4 +97,7 @@
   </Target>
   -->
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\Account\" />
+  </ItemGroup>
 </Project>
