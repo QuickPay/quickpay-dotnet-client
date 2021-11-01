@@ -12,7 +12,7 @@ namespace Quickpay.Services
 		{
 		}
 
-		public AcquirerSettings GET_Acquirers()
+		public AcquirerSettings FetchAcquirers()
         {
 			return CallEndpoint<AcquirerSettings>("acquirers");
 		}

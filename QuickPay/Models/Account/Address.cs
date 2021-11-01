@@ -9,6 +9,6 @@
 		public string zip_code { get; set; }
 		public string region { get; set; }
 		public string country_code { get; set; }
-		public object vat_no { get; set; }
+		public string vat_no { get; set; }
 	}
 }

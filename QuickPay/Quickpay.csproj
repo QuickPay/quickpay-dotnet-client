@@ -99,29 +99,31 @@
     <Compile Include="Models\Account\Settings\ViaBill.cs" />
     <Compile Include="Models\Account\Settings\Vipps.cs" />
     <Compile Include="Models\Account\Zero4PlatformSettings.cs" />
+    <Compile Include="Models\Payments\Basket.cs" />
+    <Compile Include="Models\Payments\Operation.cs" />
+    <Compile Include="Models\Payments\OptionalAddress.cs" />
+    <Compile Include="Models\Payments\PaymentLink.cs" />
+    <Compile Include="Models\Payments\PaymentLinkUrl.cs" />
+    <Compile Include="Models\Payments\Shipping.cs" />
+    <Compile Include="Models\Payments\ShopSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuickpayException.cs" />
     <Compile Include="QuickPayRestClient.cs" />
+    <Compile Include="RequestParams\CreatePaymentLinkRequestParams.cs" />
+    <Compile Include="RequestParams\CreatePaymentRequestParams.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\AcquirersService.cs" />
+    <Compile Include="Services\PingService.cs" />
     <Compile Include="Util\EnumExtensions.cs" />
-    <Compile Include="Models\AclResource.cs" />
-    <Compile Include="Models\AccountType.cs" />
-    <Compile Include="Models\HttpVerbs.cs" />
-    <Compile Include="Models\PingResponse.cs" />
-    <Compile Include="Models\activity.cs" />
-    <Compile Include="Models\acquiererstatus.cs" />
-    <Compile Include="Models\Agreements.cs" />
-    <Compile Include="Models\Branding.cs" />
+    <Compile Include="Models\Ping\PingResponse.cs" />
     <Compile Include="Parameters\PageParameters.cs" />
     <Compile Include="Parameters\SortingParameters.cs" />
-    <Compile Include="PingExample.cs" />
     <Compile Include="Models\Account\Merchant.cs" />
     <Compile Include="Models\Account\Address.cs" />
     <Compile Include="Models\Account\Settings\AcquirerSettings.cs" />
     <Compile Include="Services\PaymentsService.cs" />
-    <Compile Include="Models\Payment\Payment.cs" />
-    <Compile Include="Models\Payment\Metadata.cs" />
+    <Compile Include="Models\Payments\Payment.cs" />
+    <Compile Include="Models\Payments\Metadata.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Quickpay.nuspec" />
@@ -144,7 +146,5 @@
   -->
   <ItemGroup />
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="Models\Payment\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

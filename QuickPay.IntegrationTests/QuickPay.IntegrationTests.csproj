@@ -71,6 +71,8 @@
   <ItemGroup>
     <Compile Include="AccountServiceTests.cs" />
     <Compile Include="AcquirersServiceTest.cs" />
+    <Compile Include="PaymentsServiceTest.cs" />
+    <Compile Include="PingServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QPConfig.cs" />
     <Compile Include="RestClientSmokeTests.cs" />

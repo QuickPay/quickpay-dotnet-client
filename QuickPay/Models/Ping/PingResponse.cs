@@ -1,6 +1,6 @@
-namespace Quickpay
+namespace Quickpay.Models.Ping
 {
-    public class PingResponse
+    public class Pong
     {
         public string Msg { get; set; }
         public string Scope { get; set; }

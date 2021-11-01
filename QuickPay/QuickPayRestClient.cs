@@ -39,8 +39,9 @@ namespace Quickpay
         protected RestRequest CreateRequest (string resource)
 		{
 			var request = new RestRequest (resource);
-			request.AddHeader ("Accept-Version", "v10");
-			request.AddHeader ("accept", "application/json, text/plain, */*");
+			request.AddHeader("Accept-Version", "v10");
+			request.AddHeader("Content-Type", "application/json");
+			request.AddHeader("Accept", "application/json");
 			return request;
 		}
 
@@ -71,7 +72,7 @@ namespace Quickpay
 				prepareRequest (request);
 
 			var response = Client.Execute<T> (request);
-			Console.WriteLine(response.Content);
+			Console.WriteLine(response.Content); // TODO: Delete in production
 			VerifyResponse (response);
 			return response.Data;	
 		}
@@ -94,7 +95,8 @@ namespace Quickpay
 		protected List<HttpStatusCode> OkStatusCodes = new List<HttpStatusCode> () {
 			HttpStatusCode.OK,
 			HttpStatusCode.Created,
-			HttpStatusCode.Accepted
+			HttpStatusCode.Accepted,
+			HttpStatusCode.NoContent
 		};
 
 		protected void VerifyResponse<T> (IRestResponse<T> response)

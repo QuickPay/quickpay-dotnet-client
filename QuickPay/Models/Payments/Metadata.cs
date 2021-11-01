@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Quickpay.Models.Payment
+namespace Quickpay.Models.Payments
 {
 	public class Metadata
 	{

@@ -1,4 +1,10 @@
-﻿namespace Quickpay.Services
+﻿using Quickpay.Models.Payments;
+using Quickpay.RequestParams;
+using RestSharp;
+using System;
+using System.Collections.Generic;
+
+namespace Quickpay.Services
 {
     public class PaymentsService : QuickPayRestClient
     {
@@ -11,13 +17,56 @@
 		}
 
 
-		public List<Payment> Payments(PageParameters? pageParameters = null, SortingParameters? sortingParameters = null)
+		public List<Payment> GetAllPayments(PageParameters? pageParameters = null, SortingParameters? sortingParameters = null)
 		{
 			Action<RestRequest> prepareRequest = (RestRequest request) => {
 				AddPagingParameters(pageParameters, request);
 				AddSortingParameters(sortingParameters, request);
 			};
+
 			return CallEndpoint<List<Payment>>("payments", prepareRequest);
+		}
+
+		public List<Payment> GetPayment(int id, PageParameters? pageParameters = null, SortingParameters? sortingParameters = null)
+		{
+			Action<RestRequest> prepareRequest = (RestRequest request) => {
+				AddPagingParameters(pageParameters, request);
+				AddSortingParameters(sortingParameters, request);
+			};
+
+			return CallEndpoint<List<Payment>>("payments/" + id, prepareRequest);
+		}
+
+		public Payment CreatePayment(CreatePaymentRequestParams requestParams)
+        {
+			Action<RestRequest> prepareRequest = (RestRequest request) =>
+			{
+				request.Method = Method.POST;
+				request.AddJsonBody(requestParams);
+			};
+
+			return CallEndpoint<Payment>("payments", prepareRequest);
+        }
+
+		public PaymentLinkUrl CreateOrUpdatePaymentLink(CreatePaymentLinkRequestParams requestParams)
+        {
+			Action<RestRequest> prepareRequest = (RestRequest request) =>
+			{
+				request.Method = Method.PUT;
+				request.AddJsonBody(requestParams);
+			};
+
+			return CallEndpoint<PaymentLinkUrl>(("payments/"+requestParams.id+"/link"), prepareRequest);
+		}
+
+		public void DeletePaymentLink(int id)
+		{
+			Action<RestRequest> prepareRequest = (RestRequest request) =>
+			{
+				request.Method = Method.DELETE;
+			};
+
+			CallEndpoint<Object>(("payments/" + id + "/link"), prepareRequest);
 		}
 	}
 }
