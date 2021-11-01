@@ -3,10 +3,40 @@ using System.Collections.Generic;
 
 namespace Quickpay.Models
 {
-	[Obsolete ("This is an example class, please do not use in production")]
-	public class Data
+	public class Payment
 	{
+		public int id { get; set; }
+		public string ulid { get; set; }
+		public int merchant_id { get; set; }
+		public string order_id { get; set; }
+		public bool accepted { get; set; }
+		public string type { get; set; }
+		public object text_on_statement { get; set; }
+		public int branding_id { get; set; }
+		public string variables { get; set; }
+		public string currency { get; set; }
+		public string state { get; set; }
+		public Metadata metadata { get; set; }
+		public Link link { get; set; } //TODO: Renamve type to PaymentLink
+		//public OptionalAddress shipping_address { get; set; } TODO: Is OptionalAddress the same as address so we don't need 2 address types?
+		//public OptionalAddress invoice_address { get; set; } TODO: Is OptionalAddress the same as address so we don't need 2 address types?
+		//public Basket basket { get; set; } TODO: Create type Basket
+		//public Shipping shipping { get; set; } TODO: Create type Shipping
+		public List<Operation> operations { get; set; }
+		public bool test_mode { get; set; }
+		public string acquirer { get; set; }
+		public string facilitator { get; set; }
+		public string created_at { get; set; }
+		public string updated_at { get; set; }
+		public string retented_at { get; set; }
+		public int balance { get; set; }
+		public int fee { get; set; }
+		public int subscription_id { get; set; }
+		public string deadline_at { get; set; }
 	}
+
+
+
 
 	[Obsolete ("This is an example class, please do not use in production")]
 	public class Operation
@@ -26,23 +56,6 @@ namespace Quickpay.Models
 		public string created_at { get; set; }
 	}
 
-	[Obsolete ("This is an example class, please do not use in production")]
-	public class Metadata
-	{
-		public string type { get; set; }
-		public string brand { get; set; }
-		public string last4 { get; set; }
-		public int exp_month { get; set; }
-		public int exp_year { get; set; }
-		public string country { get; set; }
-		public bool is_3d_secure { get; set; }
-		public string hash { get; set; }
-		public object number { get; set; }
-		public string customer_ip { get; set; }
-		public string customer_country { get; set; }
-		public bool fraud_suspected { get; set; }
-		public List<object> fraud_remarks { get; set; }
-	}
 
 	[Obsolete ("This is an example class, please do not use in production")]
 	public class Link
@@ -70,25 +83,5 @@ namespace Quickpay.Models
 		public object customer_email { get; set; }
 	}
 
-	[Obsolete ("This is an example class, please do not use in production")]
-	public class Payment 
-	{
-		public int id { get; set; }
-		public string order_id { get; set; }
-		public bool accepted { get; set; }
-		public bool test_mode { get; set; }
-		public string type { get; set; }
-		public object text_on_statement { get; set; }
-		public object branding_id { get; set; }
-		public Dictionary<string, string> Variables { get; set; }
-		public string acquirer { get; set; }
-		public string currency { get; set; }
-		public string state { get; set; }
-		public List<Operation> operations { get; set; }
-		public Metadata metadata { get; set; }
-		public Link link { get; set; }
-		public string created_at { get; set; }
-		public int balance { get; set; }
-	}
 }
 

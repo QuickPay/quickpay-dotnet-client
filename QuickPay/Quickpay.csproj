@@ -71,7 +71,7 @@
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp">
-      <HintPath>..\packages\RestSharp.106.12.0\lib\net452\RestSharp.dll</HintPath>
+      <HintPath>..\packages\RestSharp.106.13.0\lib\net452\RestSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -105,7 +105,6 @@
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\AcquirersService.cs" />
     <Compile Include="Util\EnumExtensions.cs" />
-    <Compile Include="Models\payment.cs" />
     <Compile Include="Models\AclResource.cs" />
     <Compile Include="Models\AccountType.cs" />
     <Compile Include="Models\HttpVerbs.cs" />
@@ -120,6 +119,9 @@
     <Compile Include="Models\Account\Merchant.cs" />
     <Compile Include="Models\Account\Address.cs" />
     <Compile Include="Models\Account\Settings\AcquirerSettings.cs" />
+    <Compile Include="Services\PaymentsService.cs" />
+    <Compile Include="Models\Payment\Payment.cs" />
+    <Compile Include="Models\Payment\Metadata.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Quickpay.nuspec" />
@@ -142,4 +144,7 @@
   -->
   <ItemGroup />
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\Payment\" />
+  </ItemGroup>
 </Project>

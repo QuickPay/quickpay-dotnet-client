@@ -54,15 +54,6 @@ namespace Quickpay.Services
 			return CallEndpoint<List<Agreement>>("agreements", prepareRequest);
 		}
 
-		public List<Payment> Payments(PageParameters? pageParameters = null, SortingParameters? sortingParameters = null)
-		{
-			Action<RestRequest> prepareRequest = (RestRequest request) => {
-				AddPagingParameters(pageParameters, request);
-				AddSortingParameters(sortingParameters, request);
-			};
-			return CallEndpoint<List<Payment>>("payments", prepareRequest);
-		}
-
 		public List<Branding> Branding(PageParameters? pageParameters = null, SortingParameters? sortingParameters = null)
 		{
 			Action<RestRequest> prepareRequest = (RestRequest request) => {
