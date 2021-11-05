@@ -2,7 +2,9 @@
 using Quickpay.Models.Payments;
 using Quickpay.RequestParams;
 using Quickpay.Services;
+using QuickPay.IntegrationTests.Util;
 using System;
+using System.Collections.Generic;
 
 namespace QuickPay.IntegrationTests
 {
@@ -26,14 +28,52 @@ namespace QuickPay.IntegrationTests
         }
 
         [TestMethod]
-        public void CreatePayment()
+        public void CreateBasicPayment()
         {
             var service = new PaymentsService(QpConfig.ApiKey);
-            string randomOrderId = createRandomOrderId();
+            string randomOrderId = OrderIdGenerator.createRandomOrderId();
 
-            var reqParans = new CreatePaymentRequestParams("DKK", randomOrderId);
+            var reqParams = new CreatePaymentRequestParams("DKK", randomOrderId);
 
-            var result = service.CreatePayment(reqParans);
+            var result = service.CreatePayment(reqParams);
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void CreatePaymentWithBasket()
+        {
+            var service = new PaymentsService(QpConfig.ApiKey);
+            string randomOrderId = OrderIdGenerator.createRandomOrderId();
+
+            var reqParams = new CreatePaymentRequestParams("DKK", randomOrderId);
+
+            var basket = new Basket();
+            basket.qty = 2;
+            basket.item_name = "Shirt";
+            basket.vat_rate = 0.25;
+            basket.item_price = 100;
+            basket.item_no = "1234";
+
+            reqParams.basket = new Basket[] { basket };
+
+            var result = service.CreatePayment(reqParams);
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void CreatePaymentWithAddress()
+        {
+            var service = new PaymentsService(QpConfig.ApiKey);
+            string randomOrderId = OrderIdGenerator.createRandomOrderId();
+
+            var reqParams = new CreatePaymentRequestParams("DKK", randomOrderId);
+            reqParams.invoice_address = new OptionalAddress();
+            reqParams.invoice_address.country_code = "DNK";
+            reqParams.invoice_address.phone_number = "12345678";
+            reqParams.invoice_address.name = "John Doe";
+            reqParams.invoice_address.house_number = "42";
+
+            var result = service.CreatePayment(reqParams);
             Assert.IsNotNull(result);
         }
 
@@ -41,13 +81,13 @@ namespace QuickPay.IntegrationTests
         public void CreatePaymentLink()
         {
             var service = new PaymentsService(QpConfig.ApiKey);
-            string randomOrderId = createRandomOrderId();
+            string randomOrderId = OrderIdGenerator.createRandomOrderId();
 
-            var createPaymentReqParans = new CreatePaymentRequestParams("DKK", randomOrderId);
-            Payment payment = service.CreatePayment(createPaymentReqParans);
+            var createPaymentReqParams= new CreatePaymentRequestParams("DKK", randomOrderId);
+            Payment payment = service.CreatePayment(createPaymentReqParams);
 
-            var createPaymentLinkReqParans = new CreatePaymentLinkRequestParams(payment.id, 1000);
-            var result = service.CreateOrUpdatePaymentLink(createPaymentLinkReqParans);
+            var createPaymentLinkReqParams = new CreatePaymentLinkRequestParams(payment.id, 1000);
+            var result = service.CreateOrUpdatePaymentLink(createPaymentLinkReqParams);
 
             Assert.IsNotNull(result);
         }
@@ -56,21 +96,15 @@ namespace QuickPay.IntegrationTests
         public void DeletePaymentLink()
         {
             var service = new PaymentsService(QpConfig.ApiKey);
-            string randomOrderId = createRandomOrderId();
+            string randomOrderId = OrderIdGenerator.createRandomOrderId();
 
-            var createPaymentReqParans = new CreatePaymentRequestParams("DKK", randomOrderId);
-            Payment payment = service.CreatePayment(createPaymentReqParans);
+            var createPaymentReqParams = new CreatePaymentRequestParams("DKK", randomOrderId);
+            Payment payment = service.CreatePayment(createPaymentReqParams);
 
-            var createPaymentLinkReqParans = new CreatePaymentLinkRequestParams(payment.id, 1000);
-            var paymentUrl = service.CreateOrUpdatePaymentLink(createPaymentLinkReqParans);
+            var createPaymentLinkReqParams = new CreatePaymentLinkRequestParams(payment.id, 1000);
+            var paymentUrl = service.CreateOrUpdatePaymentLink(createPaymentLinkReqParams);
 
             service.DeletePaymentLink(payment.id);
-        }
-
-
-        private string createRandomOrderId()
-        {
-            return Guid.NewGuid().ToString().Replace("-", "").Substring(0, 20);
         }
     }
 }
