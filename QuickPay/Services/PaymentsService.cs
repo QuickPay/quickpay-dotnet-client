@@ -27,21 +27,21 @@ namespace Quickpay.Services
 			return CallEndpoint<List<Payment>>("payments", prepareRequest);
 		}
 
-		public List<Payment> GetPayment(int id, PageParameters? pageParameters = null, SortingParameters? sortingParameters = null)
+		public Payment GetPayment(int id, PageParameters? pageParameters = null, SortingParameters? sortingParameters = null)
 		{
 			Action<RestRequest> prepareRequest = (RestRequest request) => {
 				AddPagingParameters(pageParameters, request);
 				AddSortingParameters(sortingParameters, request);
 			};
 
-			return CallEndpoint<List<Payment>>("payments/" + id, prepareRequest);
+			return CallEndpoint<Payment>("payments/" + id, prepareRequest);
 		}
 
 		public Payment CreatePayment(CreatePaymentRequestParams requestParams)
         {
 			Action<RestRequest> prepareRequest = (RestRequest request) =>
 			{
-				request.Method = Method.POST;
+				request.Method = Method.Post;
 				request.AddJsonBody(requestParams);
 			};
 
@@ -52,7 +52,7 @@ namespace Quickpay.Services
         {
 			Action<RestRequest> prepareRequest = (RestRequest request) =>
 			{
-				request.Method = Method.PUT;
+				request.Method = Method.Put;
 				request.AddJsonBody(requestParams);
 			};
 
@@ -63,7 +63,7 @@ namespace Quickpay.Services
 		{
 			Action<RestRequest> prepareRequest = (RestRequest request) =>
 			{
-				request.Method = Method.DELETE;
+				request.Method = Method.Delete;
 			};
 
 			CallEndpoint<Object>(("payments/" + id + "/link"), prepareRequest);

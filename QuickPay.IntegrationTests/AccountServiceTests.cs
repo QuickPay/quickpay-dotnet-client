@@ -11,7 +11,7 @@ namespace QuickPay.IntegrationTests
 		public void GET_Account_Test()
 		{
 			var service = new AccountService(QpConfig.ApiKey);
-			var result = service.GetMerchantAccount();
+			var result = service.GetMerchantAccount().GetAwaiter().GetResult();
 			Assert.AreNotEqual(null, result);
 		}
 
@@ -20,14 +20,6 @@ namespace QuickPay.IntegrationTests
 		{
 			var service = new AccountService(QpConfig.ApiKey);
 			var result = service.GetPrivateKeyOfMerchant();
-			Assert.AreNotEqual(null, result);
-		}
-
-		[TestMethod]
-		public void GET_04Platform_Test()
-		{
-			var service = new AccountService(QpConfig.ApiKey);
-			var result = service.Get04PlatformSettings();
 			Assert.AreNotEqual(null, result);
 		}
 		

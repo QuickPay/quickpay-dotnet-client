@@ -1,4 +1,5 @@
-﻿using Quickpay.Models.Account;
+﻿using System.Threading.Tasks;
+using Quickpay.Models.Account;
 
 namespace Quickpay.Services
 {
@@ -13,19 +14,15 @@ namespace Quickpay.Services
 		}
 
 
-		public Merchant GetMerchantAccount()
+		public Task<Merchant> GetMerchantAccount()
 		{
-			return CallEndpoint<Merchant>("account");
+			return CallEndpointAsync<Merchant>("account");
 		}
 
-		public PrivateKey GetPrivateKeyOfMerchant()
+		public Task<PrivateKey> GetPrivateKeyOfMerchant()
         {
-			return CallEndpoint<PrivateKey>("account/private-key");
+			return CallEndpointAsync<PrivateKey>("account/private-key");
         }
 
-		public Zero4PlatformSettings Get04PlatformSettings()
-		{
-			return CallEndpoint<Zero4PlatformSettings>("account/04-platform");
-		}
 	}
 }

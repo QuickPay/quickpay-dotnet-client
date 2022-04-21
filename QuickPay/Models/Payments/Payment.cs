@@ -11,8 +11,8 @@ namespace Quickpay.Models.Payments
 		public bool accepted { get; set; }
 		public string type { get; set; }
 		public string text_on_statement { get; set; }
-		public int branding_id { get; set; }
-		public string variables { get; set; }
+		public int? branding_id { get; set; }
+		public object variables { get; set; }
 		public string currency { get; set; }
 		public string state { get; set; }
 		public Metadata metadata { get; set; }
@@ -29,7 +29,7 @@ namespace Quickpay.Models.Payments
 		public string updated_at { get; set; }
 		public string retented_at { get; set; }
 		public int balance { get; set; }
-		public int fee { get; set; }
+		public int? fee { get; set; }
 		public int subscription_id { get; set; }
 		public string deadline_at { get; set; }
 	}

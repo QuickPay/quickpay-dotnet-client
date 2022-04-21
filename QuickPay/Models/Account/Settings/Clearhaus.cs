@@ -6,7 +6,7 @@
 		public string api_key { get; set; }
 		public bool apple_pay { get; set; }
 		public string business_code { get; set; }
-		public string recurring { get; set; }
+		public bool recurring { get; set; }
 		public bool payout { get; set; }
 		public string mpi_merchant_id { get; set; }
 	}

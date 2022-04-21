@@ -6,7 +6,7 @@ namespace Quickpay.Models.Account.Settings
 	{
 		public bool active { get; set; }
 		public string identification_code { get; set; }
-		public int business_code { get; set; }
+		public int? business_code { get; set; }
 		public bool recurring { get; set; }
 		public bool fbg1886 { get; set; }
 		public bool secured_by_nets { get; set; }

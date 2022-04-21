@@ -8,12 +8,12 @@ namespace Quickpay.Models.Payments
 		public string origin { get; set; }
 		public string brand { get; set; }
 		public string bin { get; set; }
-		public bool corporate { get; set; }
+		public bool? corporate { get; set; }
 		public string last4 { get; set; }
-		public int exp_month { get; set; }
-		public int exp_year { get; set; }
+		public int? exp_month { get; set; }
+		public int? exp_year { get; set; }
 		public string country { get; set; }
-		public bool is_3d_secure { get; set; }
+		public bool? is_3d_secure { get; set; }
 		//public string 3d_secure_type { get; set; } TODO: variables cannot start with a number, so this fiels must be parsed manually
 		public string issued_to { get; set; }
 		public string hash { get; set; }
