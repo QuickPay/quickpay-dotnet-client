@@ -3,6 +3,7 @@ using Quickpay.RequestParams;
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Quickpay.Services
 {
@@ -16,28 +17,27 @@ namespace Quickpay.Services
 		{
 		}
 
-
-		public List<Payment> GetAllPayments(PageParameters? pageParameters = null, SortingParameters? sortingParameters = null)
+		public Task<List<Payment>> GetAllPayments(PageParameters? pageParameters = null, SortingParameters? sortingParameters = null)
 		{
 			Action<RestRequest> prepareRequest = (RestRequest request) => {
 				AddPagingParameters(pageParameters, request);
 				AddSortingParameters(sortingParameters, request);
 			};
 
-			return CallEndpoint<List<Payment>>("payments", prepareRequest);
+			return CallEndpointAsync<List<Payment>>("payments", prepareRequest);
 		}
 
-		public Payment GetPayment(int id, PageParameters? pageParameters = null, SortingParameters? sortingParameters = null)
+		public Task<Payment> GetPayment(int id, PageParameters? pageParameters = null, SortingParameters? sortingParameters = null)
 		{
 			Action<RestRequest> prepareRequest = (RestRequest request) => {
 				AddPagingParameters(pageParameters, request);
 				AddSortingParameters(sortingParameters, request);
 			};
 
-			return CallEndpoint<Payment>("payments/" + id, prepareRequest);
+			return CallEndpointAsync<Payment>("payments/" + id, prepareRequest);
 		}
 
-		public Payment CreatePayment(CreatePaymentRequestParams requestParams)
+		public Task<Payment> CreatePayment(CreatePaymentRequestParams requestParams)
         {
 			Action<RestRequest> prepareRequest = (RestRequest request) =>
 			{
@@ -45,10 +45,10 @@ namespace Quickpay.Services
 				request.AddJsonBody(requestParams);
 			};
 
-			return CallEndpoint<Payment>("payments", prepareRequest);
+			return CallEndpointAsync<Payment>("payments", prepareRequest);
         }
 
-		public PaymentLinkUrl CreateOrUpdatePaymentLink(CreatePaymentLinkRequestParams requestParams)
+		public Task<PaymentLinkUrl> CreateOrUpdatePaymentLink(CreatePaymentLinkRequestParams requestParams)
         {
 			Action<RestRequest> prepareRequest = (RestRequest request) =>
 			{
@@ -56,17 +56,17 @@ namespace Quickpay.Services
 				request.AddJsonBody(requestParams);
 			};
 
-			return CallEndpoint<PaymentLinkUrl>(("payments/"+requestParams.id+"/link"), prepareRequest);
+			return CallEndpointAsync<PaymentLinkUrl>(("payments/"+requestParams.id+"/link"), prepareRequest);
 		}
 
-		public void DeletePaymentLink(int id)
+		public Task DeletePaymentLink(int id)
 		{
 			Action<RestRequest> prepareRequest = (RestRequest request) =>
 			{
 				request.Method = Method.Delete;
 			};
 
-			CallEndpoint<Object>(("payments/" + id + "/link"), prepareRequest);
+			return CallEndpointAsync<Object>(("payments/" + id + "/link"), prepareRequest);
 		}
 	}
 }

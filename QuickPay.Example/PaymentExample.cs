@@ -2,6 +2,7 @@
 using Quickpay.RequestParams;
 using Quickpay.Services;
 using System;
+using System.Threading.Tasks;
 
 namespace QuickPay.Example
 {
@@ -12,6 +13,11 @@ namespace QuickPay.Example
     internal class PaymentExample
     {
         static void Main(string[] args)
+        {
+            createPayment().GetAwaiter().GetResult();
+        }
+
+        private static async Task createPayment()
         {
             // All the requests we need to create a payment is inclosed in the PaymentService
             var paymentService = new PaymentsService("<<API_KEY>>");
@@ -36,13 +42,13 @@ namespace QuickPay.Example
 
             createPaymentParams.basket = new Basket[] { basketItemJeans, basketItemShirt };
 
-            var payment = paymentService.CreatePayment(createPaymentParams);
+            var payment = await paymentService.CreatePayment(createPaymentParams);
 
 
             // Second we must create a payment link for the payment. This payment link can be opened in a browser to show the payment window from QuickPay.
-            var createPaymentLinkParams = new CreatePaymentLinkRequestParams(payment.id, (int)((basketItemJeans.qty * basketItemJeans.item_price + basketItemShirt.qty * basketItemShirt.item_price)*100));
+            var createPaymentLinkParams = new CreatePaymentLinkRequestParams(payment.id, (int)((basketItemJeans.qty * basketItemJeans.item_price + basketItemShirt.qty * basketItemShirt.item_price) * 100));
 
-            var paymentLink = paymentService.CreateOrUpdatePaymentLink(createPaymentLinkParams);
+            var paymentLink = await paymentService.CreateOrUpdatePaymentLink(createPaymentLinkParams);
 
             Console.WriteLine("Payment URL: " + paymentLink.url);
         }

@@ -1,4 +1,6 @@
 ﻿using Quickpay.Models.Ping;
+using RestSharp;
+using System;
 
 namespace Quickpay.Services
 {
@@ -14,7 +16,11 @@ namespace Quickpay.Services
 
 		public Pong ping()
         {
-			return CallEndpoint<Pong>("ping");
+			Action<RestRequest> prepareRequest = (RestRequest request) => {
+				request.Method = Method.Get;
+			};
+
+			return CallEndpointAsync<Pong>("ping", prepareRequest).GetAwaiter().GetResult();
 		}
     }
 }

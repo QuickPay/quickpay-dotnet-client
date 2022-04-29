@@ -1,4 +1,5 @@
 ﻿using Quickpay.Models.Account.Settings;
+using System.Threading.Tasks;
 
 namespace Quickpay.Services
 {
@@ -12,9 +13,9 @@ namespace Quickpay.Services
 		{
 		}
 
-		public AcquirerSettings FetchAcquirers()
+		public Task<AcquirerSettings> FetchAcquirers()
         {
-			return CallEndpoint<AcquirerSettings>("acquirers");
+			return CallEndpointAsync<AcquirerSettings>("acquirers");
 		}
 
 

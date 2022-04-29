@@ -32,7 +32,8 @@ namespace Quickpay
 
 			var restClientOptions = new RestClientOptions(BASE_URL)
 			{
-				UserAgent = "QuickPay .Net Framework 4.8 Client"
+				UserAgent = "QuickPay .Net Framework 4.8 Client",
+				FollowRedirects = true
 			};
 
 			Client = new RestClient(options: restClientOptions) {
@@ -46,7 +47,6 @@ namespace Quickpay
 		{
 			var request = new RestRequest (resource);
 			request.AddHeader("Accept-Version", "v10");
-			request.AddHeader("Content-Type", "application/json");
 			request.AddHeader("Accept", "application/json");
 			return request;
 		}
@@ -71,19 +71,6 @@ namespace Quickpay
 			request.AddParameter ("sort_dir", sortingParameters.Value.SortDirection.GetName ());
 		}
 
-        protected T CallEndpoint<T>(string endpointName, Action<RestRequest> prepareRequest = null) where T : new()
-        {
-            var request = CreateRequest(endpointName);
-            if (prepareRequest != null)
-                prepareRequest(request);
-
-            var response = Client.ExecuteAsync<T>(request).GetAwaiter().GetResult();
-            Console.WriteLine(response.Content); // TODO: Delete in production
-            VerifyResponse(response);
-            return response.Data;
-        }
-
-
         protected async Task<T> CallEndpointAsync<T> (string endpointName, Action<RestRequest> prepareRequest = null) where T: new()
 		{
 			var request = CreateRequest (endpointName);
@@ -93,8 +80,6 @@ namespace Quickpay
 			var cancellationTokenSource = new CancellationTokenSource();
 		
 			var response = await Client.ExecuteAsync<T>(request, cancellationTokenSource.Token);
-
-			Console.WriteLine(response.Content); // TODO: Delete in production
 
 			VerifyResponse(response);
 			return response.Data;	

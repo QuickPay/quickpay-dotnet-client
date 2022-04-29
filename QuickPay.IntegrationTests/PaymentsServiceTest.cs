@@ -3,8 +3,6 @@ using Quickpay.Models.Payments;
 using Quickpay.RequestParams;
 using Quickpay.Services;
 using QuickPay.IntegrationTests.Util;
-using System;
-using System.Collections.Generic;
 
 namespace QuickPay.IntegrationTests
 {
@@ -84,7 +82,7 @@ namespace QuickPay.IntegrationTests
             string randomOrderId = OrderIdGenerator.createRandomOrderId();
 
             var createPaymentReqParams= new CreatePaymentRequestParams("DKK", randomOrderId);
-            Payment payment = service.CreatePayment(createPaymentReqParams);
+            Payment payment = service.CreatePayment(createPaymentReqParams).GetAwaiter().GetResult();
 
             var createPaymentLinkReqParams = new CreatePaymentLinkRequestParams(payment.id, 1000);
             var result = service.CreateOrUpdatePaymentLink(createPaymentLinkReqParams);
@@ -99,7 +97,7 @@ namespace QuickPay.IntegrationTests
             string randomOrderId = OrderIdGenerator.createRandomOrderId();
 
             var createPaymentReqParams = new CreatePaymentRequestParams("DKK", randomOrderId);
-            Payment payment = service.CreatePayment(createPaymentReqParams);
+            Payment payment = service.CreatePayment(createPaymentReqParams).GetAwaiter().GetResult();
 
             var createPaymentLinkReqParams = new CreatePaymentLinkRequestParams(payment.id, 1000);
             var paymentUrl = service.CreateOrUpdatePaymentLink(createPaymentLinkReqParams);
