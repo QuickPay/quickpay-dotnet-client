@@ -5,8 +5,11 @@ using System.Threading.Tasks;
 using System.Threading;
 using RestSharp;
 using RestSharp.Authenticators;
+using RestSharp.Extensions;
 using Quickpay.Util;
-
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using RestSharp.Serializers.Json;
 
 namespace Quickpay
 {
@@ -29,17 +32,26 @@ namespace Quickpay
 				throw new ArgumentException ("You need to provide either a username / password or an apikey");
 			}
 
-
 			var restClientOptions = new RestClientOptions(BASE_URL)
 			{
-				UserAgent = "QuickPay .Net Framework 4.8 Client",
-				FollowRedirects = true
+				UserAgent = "QuickPay .Net 6 SDK",
+				FollowRedirects = true,				
 			};
 
 			Client = new RestClient(options: restClientOptions) {
 				Authenticator = new HttpBasicAuthenticator(username, password)
 			};
-		}
+
+            JsonSerializerOptions options = new JsonSerializerOptions()
+            {
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+            };
+
+            Client.UseSerializer(() =>
+            {
+                return new SystemTextJsonSerializer(options);
+            });
+        }
         #endregion
 
 

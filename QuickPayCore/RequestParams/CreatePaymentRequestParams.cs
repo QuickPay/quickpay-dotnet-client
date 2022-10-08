@@ -15,7 +15,7 @@ namespace Quickpay.RequestParams
         public string order_id { get; set; }
         public OptionalAddress invoice_address { get; set; }
         public OptionalAddress shipping_address { get; set; }
-        public int branding_id { get; set; }
+        public int? branding_id { get; set; }
         public Basket[] basket { get; set; }
         public Shipping shipping { get; set; }
         public ShopSystem shopsystem { get; set; }

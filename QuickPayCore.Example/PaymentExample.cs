@@ -21,10 +21,10 @@ namespace QuickPay.Example
         {
             // All the requests we need to create a payment is inclosed in the PaymentService
             var paymentService = new PaymentsService("<<API_KEY>>");
-
-
+            
             // First we must create a payment and for this we need a CreatePaymentRequestParams object
             var createPaymentParams = new CreatePaymentRequestParams("DKK", createRandomOrderId());
+            createPaymentParams.text_on_statement = "QuickPay .NET Example";
 
             var basketItemJeans = new Basket();
             basketItemJeans.qty = 2;
@@ -47,6 +47,7 @@ namespace QuickPay.Example
 
             // Second we must create a payment link for the payment. This payment link can be opened in a browser to show the payment window from QuickPay.
             var createPaymentLinkParams = new CreatePaymentLinkRequestParams(payment.id, (int)((basketItemJeans.qty * basketItemJeans.item_price + basketItemShirt.qty * basketItemShirt.item_price) * 100));
+            createPaymentLinkParams.payment_methods = "creditcard";
 
             var paymentLink = await paymentService.CreateOrUpdatePaymentLink(createPaymentLinkParams);
 
