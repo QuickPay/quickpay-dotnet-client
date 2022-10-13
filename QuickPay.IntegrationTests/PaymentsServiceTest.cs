@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Quickpay;
 using Quickpay.Models.Payments;
 using Quickpay.RequestParams;
 using Quickpay.Services;
@@ -10,10 +11,24 @@ namespace QuickPay.IntegrationTests
     public class PaymentsServiceTest
     {
         [TestMethod]
-        public void GetPayments()
+        public void GetAllPayments()
         {
             var service = new PaymentsService(QpConfig.ApiKey);
             var task = service.GetAllPayments();
+            var result = task.Result;
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void GetAllPaymentsWithPaging()
+        {
+            var service = new PaymentsService(QpConfig.ApiKey);
+            var pageParams = new PageParameters()
+            {
+                Page = 1,
+                PageSize = 10
+            };
+            var task = service.GetAllPayments(pageParams);
             var result = task.Result;
             Assert.IsNotNull(result);
         }
@@ -109,5 +124,34 @@ namespace QuickPay.IntegrationTests
 
             var task = service.DeletePaymentLink(payment.id);
         }
+
+        [TestMethod]
+        public void UpdatePayment()
+        {
+            var service = new PaymentsService(QpConfig.ApiKey);
+            string randomOrderId = OrderIdGenerator.createRandomOrderId();
+
+            var reqParams = new CreatePaymentRequestParams("DKK", randomOrderId);
+
+            var task = service.CreatePayment(reqParams);
+            var payment = task.Result;
+
+            Assert.IsNotNull(payment);
+
+            var updateReqParams = new UpdatePaymentRequestParams();
+            var basket = new Basket();
+            basket.qty = 2;
+            basket.item_name = "Shirt";
+            basket.vat_rate = 0.25;
+            basket.item_price = 100;
+            basket.item_no = "1234";
+
+            updateReqParams.basket = new Basket[] { basket };
+
+            task = service.UpdatePayment(payment.id, updateReqParams);
+            var result = task.Result;
+
+            Assert.IsNotNull(result);
+        }        
     }
 }
