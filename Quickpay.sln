@@ -10,12 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{12F736
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quickpay", "QuickPay\Quickpay.csproj", "{D077704F-3E9F-4BA2-85E1-A8C27D303B93}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickPay.IntegrationTests", "QuickPay.IntegrationTests\QuickPay.IntegrationTests.csproj", "{E5F7F505-1EFE-46C3-8CBA-8F34F8D7DBFF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickPay.Example", "QuickPay.Example\QuickPay.Example.csproj", "{5C6D52D5-53BA-40BE-A3B7-3018A151C348}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickPayCore", "QuickPayCore\QuickPayCore.csproj", "{25DAA672-38A3-4C71-BD14-FD0D57D45E62}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickPayCore.IntegrationTests", "QuickPayCore.IntegrationTests\QuickPayCore.IntegrationTests.csproj", "{8526FCF1-1664-4CC9-9CA3-B99A3D9B32C5}"
@@ -30,30 +24,6 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D077704F-3E9F-4BA2-85E1-A8C27D303B93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D077704F-3E9F-4BA2-85E1-A8C27D303B93}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D077704F-3E9F-4BA2-85E1-A8C27D303B93}.Debug|x64.ActiveCfg = Debug|x64
-		{D077704F-3E9F-4BA2-85E1-A8C27D303B93}.Debug|x64.Build.0 = Debug|x64
-		{D077704F-3E9F-4BA2-85E1-A8C27D303B93}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D077704F-3E9F-4BA2-85E1-A8C27D303B93}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D077704F-3E9F-4BA2-85E1-A8C27D303B93}.Release|x64.ActiveCfg = Release|x64
-		{D077704F-3E9F-4BA2-85E1-A8C27D303B93}.Release|x64.Build.0 = Release|x64
-		{E5F7F505-1EFE-46C3-8CBA-8F34F8D7DBFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E5F7F505-1EFE-46C3-8CBA-8F34F8D7DBFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E5F7F505-1EFE-46C3-8CBA-8F34F8D7DBFF}.Debug|x64.ActiveCfg = Debug|x64
-		{E5F7F505-1EFE-46C3-8CBA-8F34F8D7DBFF}.Debug|x64.Build.0 = Debug|x64
-		{E5F7F505-1EFE-46C3-8CBA-8F34F8D7DBFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E5F7F505-1EFE-46C3-8CBA-8F34F8D7DBFF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E5F7F505-1EFE-46C3-8CBA-8F34F8D7DBFF}.Release|x64.ActiveCfg = Release|x64
-		{E5F7F505-1EFE-46C3-8CBA-8F34F8D7DBFF}.Release|x64.Build.0 = Release|x64
-		{5C6D52D5-53BA-40BE-A3B7-3018A151C348}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C6D52D5-53BA-40BE-A3B7-3018A151C348}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C6D52D5-53BA-40BE-A3B7-3018A151C348}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{5C6D52D5-53BA-40BE-A3B7-3018A151C348}.Debug|x64.Build.0 = Debug|Any CPU
-		{5C6D52D5-53BA-40BE-A3B7-3018A151C348}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C6D52D5-53BA-40BE-A3B7-3018A151C348}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5C6D52D5-53BA-40BE-A3B7-3018A151C348}.Release|x64.ActiveCfg = Release|Any CPU
-		{5C6D52D5-53BA-40BE-A3B7-3018A151C348}.Release|x64.Build.0 = Release|Any CPU
 		{25DAA672-38A3-4C71-BD14-FD0D57D45E62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{25DAA672-38A3-4C71-BD14-FD0D57D45E62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25DAA672-38A3-4C71-BD14-FD0D57D45E62}.Debug|x64.ActiveCfg = Debug|Any CPU
