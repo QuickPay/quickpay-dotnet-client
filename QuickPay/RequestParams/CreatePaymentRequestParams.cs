@@ -13,13 +13,15 @@ namespace Quickpay.RequestParams
 
         public string currency { get; set; }
         public string order_id { get; set; }
-        public OptionalAddress invoice_address { get; set; }
-        public OptionalAddress shipping_address { get; set; }
+
+
+        public OptionalAddress? invoice_address { get; set; }
+        public OptionalAddress? shipping_address { get; set; }
         public int? branding_id { get; set; }
-        public Basket[] basket { get; set; }
-        public Shipping shipping { get; set; }
-        public ShopSystem shopsystem { get; set; }
-        public List<object> variables { get; set; }
-        public string text_on_statement { get; set; }
+        public Basket[]? basket { get; set; }
+        public Shipping? shipping { get; set; }
+        public ShopSystem? shopsystem { get; set; }
+        public List<object>? variables { get; set; }
+        public string? text_on_statement { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿namespace Quickpay.RequestParams
 {
-    public class CreatePaymentLinkRequestParams
+    public class CreatePaymentLinkSubscriptionRequestParams
     {
-        public CreatePaymentLinkRequestParams(int amount)
+        public CreatePaymentLinkSubscriptionRequestParams(int amount)
         {
             this.amount = amount;
         }
@@ -27,7 +27,5 @@
         public string? customer_email { get; set; }
         public bool? invoice_address_selection { get; set; }
         public bool? shipping_address_selection { get; set; }
-        public bool? auto_capture { get; set; }
-        public string? auto_capture_at { get; set; }
     }
 }

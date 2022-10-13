@@ -5,12 +5,6 @@ namespace Quickpay.RequestParams
 {
     public class UpdatePaymentRequestParams
     {
-        public UpdatePaymentRequestParams(string currency, string id)
-        {
-            this.id = id;
-        }
-
-        public string id { get; set; }
         public string deadline_at { get; set; }
         public OptionalAddress invoice_address { get; set; }
         public OptionalAddress shipping_address { get; set; }

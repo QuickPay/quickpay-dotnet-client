@@ -8,8 +8,12 @@
 
   <ItemGroup>
     <None Remove="RestSharp" />
+    <None Remove="Models\Subscriptions\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="RestSharp" Version="108.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\Subscriptions\" />
   </ItemGroup>
 </Project>
