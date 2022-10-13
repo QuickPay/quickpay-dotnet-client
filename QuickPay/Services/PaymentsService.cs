@@ -1,5 +1,6 @@
 ﻿using Quickpay.Models.Payments;
 using Quickpay.RequestParams;
+using QuickPay.RequestParams;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -48,7 +49,62 @@ namespace Quickpay.Services
 			return CallEndpointAsync<Payment>("payments", prepareRequest);
         }
 
-		public Task<PaymentLinkUrl> CreateOrUpdatePaymentLink(CreatePaymentLinkRequestParams requestParams)
+        public Task<Payment> UpdatePayment(UpdatePaymentRequestParams requestParams)
+        {
+            Action<RestRequest> prepareRequest = (RestRequest request) =>
+            {
+                request.Method = Method.Patch;
+                request.AddJsonBody(requestParams);
+            };
+
+            return CallEndpointAsync<Payment>("payments", prepareRequest);
+        }
+
+        public Task<Payment> CapturePayment(int id, CapturePaymentRequestParams requestParams, string? callbackUrl = null)
+        {
+            Action<RestRequest> prepareRequest = (RestRequest request) =>
+            {
+                request.Method = Method.Post;
+                request.AddJsonBody(requestParams);
+				if(callbackUrl != null)
+                {
+					request.AddHeader("QuickPay-Callback-Url", callbackUrl);
+                }
+            };
+
+            return CallEndpointAsync<Payment>("payments/"+id+"/capture", prepareRequest);
+        }
+
+        public Task<Payment> RefundPayment(int id, RefundPaymentRequestParams requestParams, string? callbackUrl = null)
+        {
+            Action<RestRequest> prepareRequest = (RestRequest request) =>
+            {
+                request.Method = Method.Post;
+                request.AddJsonBody(requestParams);
+                if (callbackUrl != null)
+                {
+                    request.AddHeader("QuickPay-Callback-Url", callbackUrl);
+                }
+            };
+
+            return CallEndpointAsync<Payment>("payments/" + id + "/refund", prepareRequest);
+        }
+
+        public Task<Payment> CancelPayment(int id, string? callbackUrl = null)
+        {
+            Action<RestRequest> prepareRequest = (RestRequest request) =>
+            {
+                request.Method = Method.Post;
+                if (callbackUrl != null)
+                {
+                    request.AddHeader("QuickPay-Callback-Url", callbackUrl);
+                }
+            };
+
+            return CallEndpointAsync<Payment>("payments/" + id + "/cancel", prepareRequest);
+        }
+
+        public Task<PaymentLinkUrl> CreateOrUpdatePaymentLink(int id, CreatePaymentLinkRequestParams requestParams)
         {
 			Action<RestRequest> prepareRequest = (RestRequest request) =>
 			{
@@ -56,7 +112,7 @@ namespace Quickpay.Services
 				request.AddJsonBody(requestParams);
 			};
 
-			return CallEndpointAsync<PaymentLinkUrl>(("payments/"+requestParams.id+"/link"), prepareRequest);
+			return CallEndpointAsync<PaymentLinkUrl>(("payments/"+id+"/link"), prepareRequest);
 		}
 
 		public Task DeletePaymentLink(int id)

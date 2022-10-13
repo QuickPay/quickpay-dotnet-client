@@ -46,10 +46,10 @@ namespace QuickPay.Example
 
 
             // Second we must create a payment link for the payment. This payment link can be opened in a browser to show the payment window from QuickPay.
-            var createPaymentLinkParams = new CreatePaymentLinkRequestParams(payment.id, (int)((basketItemJeans.qty * basketItemJeans.item_price + basketItemShirt.qty * basketItemShirt.item_price) * 100));
+            var createPaymentLinkParams = new CreatePaymentLinkRequestParams((int)((basketItemJeans.qty * basketItemJeans.item_price + basketItemShirt.qty * basketItemShirt.item_price) * 100));
             createPaymentLinkParams.payment_methods = "creditcard";
 
-            var paymentLink = await paymentService.CreateOrUpdatePaymentLink(createPaymentLinkParams);
+            var paymentLink = await paymentService.CreateOrUpdatePaymentLink(payment.id, createPaymentLinkParams);
 
             Console.WriteLine("Payment URL: " + paymentLink.url);
         }

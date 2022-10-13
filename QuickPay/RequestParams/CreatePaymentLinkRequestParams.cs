@@ -2,13 +2,11 @@
 {
     public class CreatePaymentLinkRequestParams
     {
-        public CreatePaymentLinkRequestParams(int id, int amount)
+        public CreatePaymentLinkRequestParams(int amount)
         {
-            this.id = id;
             this.amount = amount;
         }
 
-        public int id { get; set; }
         public int amount { get; set; }
         public string agreement_id { get; set; }
         public string language { get; set; }

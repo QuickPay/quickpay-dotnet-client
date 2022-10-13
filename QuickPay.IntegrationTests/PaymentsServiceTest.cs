@@ -84,8 +84,8 @@ namespace QuickPay.IntegrationTests
             var createPaymentReqParams= new CreatePaymentRequestParams("DKK", randomOrderId);
             Payment payment = service.CreatePayment(createPaymentReqParams).GetAwaiter().GetResult();
 
-            var createPaymentLinkReqParams = new CreatePaymentLinkRequestParams(payment.id, 1000);
-            var result = service.CreateOrUpdatePaymentLink(createPaymentLinkReqParams);
+            var createPaymentLinkReqParams = new CreatePaymentLinkRequestParams(1000);
+            var result = service.CreateOrUpdatePaymentLink(payment.id, createPaymentLinkReqParams);
 
             Assert.IsNotNull(result);
         }
@@ -99,8 +99,8 @@ namespace QuickPay.IntegrationTests
             var createPaymentReqParams = new CreatePaymentRequestParams("DKK", randomOrderId);
             Payment payment = service.CreatePayment(createPaymentReqParams).GetAwaiter().GetResult();
 
-            var createPaymentLinkReqParams = new CreatePaymentLinkRequestParams(payment.id, 1000);
-            var paymentUrl = service.CreateOrUpdatePaymentLink(createPaymentLinkReqParams);
+            var createPaymentLinkReqParams = new CreatePaymentLinkRequestParams(1000);
+            var paymentUrl = service.CreateOrUpdatePaymentLink(payment.id, createPaymentLinkReqParams);
 
             service.DeletePaymentLink(payment.id);
         }
