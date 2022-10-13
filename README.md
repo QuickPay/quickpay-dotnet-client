@@ -12,17 +12,18 @@ If you haven't please [click](https://quickpay.net/) here to apply.
 
 ### Services
 
-The communication with the QuickPay API is done by services that each represent a specific area of the API. At the moment we support 4 services.
+The communication with the QuickPay API is done by services that each represent a specific area of the API. At the moment we support 5 services.
  - AccountService
  - AcquirersService
  - PaymentsService
+ - SubscriptionsService
  - PingService
 
  Each service must be initialised with a valid API Key for them to work.
 
 ### Models
 
-The reqeusts and responses that are supported by the services also comes with model classes, so parsing of the http response is done for you.
+The requests and responses that are supported by the services also comes with model classes, so parsing of the http response is done for you.
 
 
 ### Extension
