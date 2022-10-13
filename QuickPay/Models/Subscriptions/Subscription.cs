@@ -32,7 +32,7 @@ namespace Quickpay.Models.Payments
 		public string description { get; set; }
 		public List<int> group_ids { get; set; }
 		public ThreedsV2 threeds_v2 { get; set; }
-		public bool unscheduled { get; set; }
+		public Boolean? unscheduled { get; set; }
 		public string deadline_at { get; set; }
     }
 }

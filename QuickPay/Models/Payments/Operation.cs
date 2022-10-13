@@ -12,7 +12,7 @@
 		public string aq_status_msg { get; set; }
 		public object data { get; set; }
 		public string callback_url { get; set; }
-		public bool callback_success { get; set; }
+		public Boolean? callback_success { get; set; }
 		public string callback_response_code { get; set; }
 		public string callback_duration { get; set; }
 		public string acquirer { get; set; }
