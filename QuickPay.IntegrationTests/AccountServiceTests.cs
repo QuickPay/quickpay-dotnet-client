@@ -19,7 +19,7 @@ namespace QuickPay.IntegrationTests
 		public void GET_PrivateKey_Test()
 		{
 			var service = new AccountService(QpConfig.ApiKey);
-			var result = service.GetPrivateKeyOfMerchant();
+			var result = service.GetPrivateKeyOfMerchant().GetAwaiter().GetResult();
 			Assert.AreNotEqual(null, result);
 		}
 		
