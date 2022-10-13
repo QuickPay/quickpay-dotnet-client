@@ -3,7 +3,7 @@
 This assembly currently support QuickPay `v10` api.
 
 ## Installation
-Via nuget  
+You can either download the source directly from the GitHub repo, or install the nuget package which can be found on [nuget.org](https://www.nuget.org/packages/QuickPay.API.Client).
 
 ## Usage
 

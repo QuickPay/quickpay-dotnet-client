@@ -16,6 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\QuickPayCore\QuickPayCore.csproj" />
+    <ProjectReference Include="..\QuickPay\QuickPay.csproj" />
   </ItemGroup>
 </Project>
