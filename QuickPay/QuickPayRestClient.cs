@@ -5,8 +5,11 @@ using System.Threading.Tasks;
 using System.Threading;
 using RestSharp;
 using RestSharp.Authenticators;
+using RestSharp.Extensions;
 using Quickpay.Util;
-
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using RestSharp.Serializers.Json;
 
 namespace Quickpay
 {
@@ -28,19 +31,35 @@ namespace Quickpay
 			if (password == string.Empty) {
 				throw new ArgumentException ("You need to provide either a username / password or an apikey");
 			}
-			Client = new RestClient (BASE_URL) {
-				Authenticator = new HttpBasicAuthenticator (username, password),
-				UserAgent = "QuickPay .Net Framework 4.8 Client"
+
+			var restClientOptions = new RestClientOptions(BASE_URL)
+			{
+				UserAgent = "QuickPay .Net 6 SDK",
+				FollowRedirects = true,				
 			};
-		}
+
+			Client = new RestClient(options: restClientOptions) {
+				Authenticator = new HttpBasicAuthenticator(username, password)
+			};
+
+            JsonSerializerOptions options = new JsonSerializerOptions()
+            {
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+            };
+
+            Client.UseSerializer(() =>
+            {
+                return new SystemTextJsonSerializer(options);
+            });
+        }
         #endregion
 
 
         protected RestRequest CreateRequest (string resource)
 		{
 			var request = new RestRequest (resource);
-			request.AddHeader ("Accept-Version", "v10");
-			request.AddHeader ("accept", "application/json, text/plain, */*");
+			request.AddHeader("Accept-Version", "v10");
+			request.AddHeader("Accept", "application/json");
 			return request;
 		}
 
@@ -64,19 +83,7 @@ namespace Quickpay
 			request.AddParameter ("sort_dir", sortingParameters.Value.SortDirection.GetName ());
 		}
 
-		protected T CallEndpoint<T> (string endpointName, Action<RestRequest> prepareRequest = null) where T: new()
-		{
-			var request = CreateRequest (endpointName);
-			if (prepareRequest != null)
-				prepareRequest (request);
-
-			var response = Client.Execute<T> (request);
-			VerifyResponse (response);
-			return response.Data;	
-		}
-
-
-		protected async Task<T> CallEndpointAsync<T> (string endpointName, Action<RestRequest> prepareRequest = null) where T: new()
+        protected async Task<T> CallEndpointAsync<T> (string endpointName, Action<RestRequest> prepareRequest = null) where T: new()
 		{
 			var request = CreateRequest (endpointName);
 			if (prepareRequest != null)
@@ -86,24 +93,30 @@ namespace Quickpay
 		
 			var response = await Client.ExecuteAsync<T>(request, cancellationTokenSource.Token);
 
-			VerifyResponse (response);
+			VerifyResponse(response);
 			return response.Data;	
 		}
 
 		protected List<HttpStatusCode> OkStatusCodes = new List<HttpStatusCode> () {
 			HttpStatusCode.OK,
 			HttpStatusCode.Created,
-			HttpStatusCode.Accepted
+			HttpStatusCode.Accepted,
+			HttpStatusCode.NoContent
 		};
 
-		protected void VerifyResponse<T> (IRestResponse<T> response)
+		protected void VerifyResponse<T> (RestResponse<T> response)
 		{
 			if (response.StatusCode == HttpStatusCode.NotFound) {
 				throw new Exception ("Endpoint not found, please note this could mean you are not authorized to access this endpoint");
 			}
+
 			if (!OkStatusCodes.Contains (response.StatusCode)) {
 				throw new Exception (response.StatusDescription);
 			}
+
+			if(response.ErrorException != null) {
+				throw response.ErrorException;
+            }
 		}
 	}
 }

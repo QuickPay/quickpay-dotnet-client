@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Quickpay
+﻿namespace Quickpay
 {
 	public enum SortDirection
 	{
