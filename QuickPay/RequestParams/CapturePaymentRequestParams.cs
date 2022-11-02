@@ -11,6 +11,6 @@ namespace QuickPay.RequestParams
         }
 
         public int amount { get; set; }
-        public object? extras { get; set; }
+        public object extras { get; set; }
     }
 }

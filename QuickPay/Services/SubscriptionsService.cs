@@ -80,7 +80,7 @@ namespace QuickPay.Services
             return CallEndpointAsync<Subscription>("subscriptions/" + id, prepareRequest);
         }
 
-        public Task<Subscription> CancelSubscription(int id, string? callbackUrl = null, bool? synchronized = null)
+        public Task<Subscription> CancelSubscription(int id, string callbackUrl = null, bool synchronized = false)
         {
             Action<RestRequest> prepareRequest = (RestRequest request) =>
             {
@@ -100,7 +100,7 @@ namespace QuickPay.Services
             return CallEndpointAsync<Subscription>(url, prepareRequest);
         }
 
-        public Task<Subscription> CreateSubscriptionRecurringPayment(int id, CreateSubscriptionRecurringPaymentRequestParams requestParams, string? callbackUrl = null)
+        public Task<Subscription> CreateSubscriptionRecurringPayment(int id, CreateSubscriptionRecurringPaymentRequestParams requestParams, string callbackUrl = null)
         {
             Action<RestRequest> prepareRequest = (RestRequest request) =>
             {
