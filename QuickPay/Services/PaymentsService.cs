@@ -79,7 +79,7 @@ namespace Quickpay.Services
             return CallEndpointAsync<Payment>("payments/" + id, prepareRequest);
         }
 
-        public Task<Payment> CapturePayment(int id, CapturePaymentRequestParams requestParams, string callbackUrl = null)
+        public Task<Payment> CapturePayment(int id, CapturePaymentRequestParams requestParams, string? callbackUrl = null)
         {
             Action<RestRequest> prepareRequest = (RestRequest request) =>
             {
@@ -94,7 +94,7 @@ namespace Quickpay.Services
             return CallEndpointAsync<Payment>("payments/"+id+"/capture", prepareRequest);
         }
 
-        public Task<Payment> RefundPayment(int id, RefundPaymentRequestParams requestParams, string callbackUrl = null)
+        public Task<Payment> RefundPayment(int id, RefundPaymentRequestParams requestParams, string? callbackUrl = null)
         {
             Action<RestRequest> prepareRequest = (RestRequest request) =>
             {
@@ -109,7 +109,7 @@ namespace Quickpay.Services
             return CallEndpointAsync<Payment>("payments/" + id + "/refund", prepareRequest);
         }
 
-        public Task<Payment> CancelPayment(int id, string callbackUrl = null, bool synchronized = false)
+        public Task<Payment> CancelPayment(int id, string? callbackUrl = null, bool? synchronized = null)
         {
             Action<RestRequest> prepareRequest = (RestRequest request) =>
             {
@@ -121,7 +121,10 @@ namespace Quickpay.Services
             };
 
             var url = "payments/" + id + "/cancel";
-            url += "?synchronized=" + synchronized;
+            if (synchronized != null)
+            {
+                url += "?synchronized=" + synchronized;
+            }
 
             return CallEndpointAsync<Payment>(url, prepareRequest);
         }
