@@ -63,7 +63,7 @@ namespace Quickpay
 			return request;
 		}
 
-		protected void AddPagingParameters (PageParameters? pageParameters, RestRequest request)
+		protected void AddPagingParameters(Nullable<PageParameters> pageParameters, RestRequest request)
 		{
 			if (pageParameters == null)
 				return;
@@ -71,7 +71,7 @@ namespace Quickpay
 			request.AddParameter ("page_size", pageParameters.Value.PageSize);
 		}
 
-		protected void AddSortingParameters (SortingParameters? sortingParameters, RestRequest request)
+		protected void AddSortingParameters(Nullable<SortingParameters> sortingParameters, RestRequest request)
 		{
 			if (sortingParameters == null)
 				return;

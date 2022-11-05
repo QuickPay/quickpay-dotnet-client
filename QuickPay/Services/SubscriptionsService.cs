@@ -80,7 +80,7 @@ namespace QuickPay.Services
             return CallEndpointAsync<Subscription>("subscriptions/" + id, prepareRequest);
         }
 
-        public Task<Subscription> CancelSubscription(int id, string? callbackUrl = null, bool? synchronized = null)
+        public Task<Subscription> CancelSubscription(int id, string callbackUrl = null, bool synchronized = false)
         {
             Action<RestRequest> prepareRequest = (RestRequest request) =>
             {
@@ -92,15 +92,12 @@ namespace QuickPay.Services
             };
 
             var url = "subscriptions/" + id + "/cancel";
-            if(synchronized != null)
-            {
-                url += "?synchronized=" + synchronized;
-            }
+            url += "?synchronized=" + synchronized;
 
             return CallEndpointAsync<Subscription>(url, prepareRequest);
         }
 
-        public Task<Subscription> CreateSubscriptionRecurringPayment(int id, CreateSubscriptionRecurringPaymentRequestParams requestParams, string? callbackUrl = null)
+        public Task<Subscription> CreateSubscriptionRecurringPayment(int id, CreateSubscriptionRecurringPaymentRequestParams requestParams, string callbackUrl = null)
         {
             Action<RestRequest> prepareRequest = (RestRequest request) =>
             {
@@ -115,7 +112,7 @@ namespace QuickPay.Services
             return CallEndpointAsync<Subscription>("subscriptions/" + id + "/recurring", prepareRequest);
         }
 
-        public Task<List<Payment>> GetAllSubscriptionPayments(int id, PageParameters? pageParameters = null, SortingParameters? sortingParameters = null)
+        public Task<List<Payment>> GetAllSubscriptionPayments(int id, Nullable<PageParameters> pageParameters = null, Nullable<SortingParameters> sortingParameters = null)
         {
             Action<RestRequest> prepareRequest = (RestRequest request) => {
                 AddPagingParameters(pageParameters, request);
