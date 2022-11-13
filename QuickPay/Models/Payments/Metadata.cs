@@ -14,7 +14,6 @@ namespace Quickpay.Models.Payments
 		public int? exp_year { get; set; }
 		public string country { get; set; }
 		public bool? is_3d_secure { get; set; }
-		//public string 3d_secure_type { get; set; } TODO: variables cannot start with a number, so this fiels must be parsed manually
 		public string issued_to { get; set; }
 		public string hash { get; set; }
 		public object number { get; set; }

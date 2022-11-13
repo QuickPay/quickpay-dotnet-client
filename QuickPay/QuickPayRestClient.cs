@@ -9,22 +9,23 @@ using Quickpay.Util;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using RestSharp.Serializers.Json;
+using QuickPay.Exceptions;
 
 namespace Quickpay
 {
 	public abstract class QuickPayRestClient
 	{
+		#pragma warning disable S1075 // URIs should not be hardcoded
         private const string BASE_URL = "https://api.quickpay.net/";
+		#pragma warning restore S1075 // URIs should not be hardcoded
 
-		protected RestClient Client { get; set; }
+        protected RestClient Client { get; set; }
 
-		#region Constructors
-		public QuickPayRestClient(string apikey) : this(string.Empty, apikey)
+        protected QuickPayRestClient(string apikey) : this(string.Empty, apikey)
 		{
-			// NOP
 		}
 
-		public QuickPayRestClient (string username, string password)
+        protected QuickPayRestClient (string username, string password)
 		{
 			if (password == string.Empty) {
 				throw new ArgumentException ("You need to provide either a username / password or an apikey");
@@ -32,7 +33,7 @@ namespace Quickpay
 
 			var restClientOptions = new RestClientOptions(BASE_URL)
 			{
-				UserAgent = "QuickPay .Net 6 SDK",
+				UserAgent = "QuickPay .Net Standard 2.0 SDK",
 				FollowRedirects = true,				
 			};
 
@@ -50,7 +51,6 @@ namespace Quickpay
                 return new SystemTextJsonSerializer(options);
             });
         }
-        #endregion
 
 
         protected RestRequest CreateRequest (string resource)
@@ -105,11 +105,11 @@ namespace Quickpay
 		protected void VerifyResponse<T> (RestResponse<T> response)
 		{
 			if (response.StatusCode == HttpStatusCode.NotFound) {
-				throw new Exception ("Endpoint not found, please note this could mean you are not authorized to access this endpoint");
+				throw new NotFoundException ("Endpoint not found, please note this could mean you are not authorized to access this endpoint");
 			}
 
 			if (!OkStatusCodes.Contains (response.StatusCode)) {
-				throw new Exception (response.StatusDescription);
+				throw new HttpFailureStatusCodeException((int)response.StatusCode, response.StatusDescription);
 			}
 
 			if(response.ErrorException != null) {

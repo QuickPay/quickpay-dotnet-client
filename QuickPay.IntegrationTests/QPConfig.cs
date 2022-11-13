@@ -1,4 +1,5 @@
 ﻿using System;
+using QuickPay.IntegrationTests.Exceptions;
 
 namespace QuickPay.IntegrationTests
 {
@@ -6,7 +7,15 @@ namespace QuickPay.IntegrationTests
     {
         public static string ApiKey
         {
-            get => Environment.GetEnvironmentVariable("QUICKPAY_API_KEY");
+            get
+            {
+                string? apiKey = Environment.GetEnvironmentVariable("QUICKPAY_API_KEY");
+                if (apiKey == null)
+                {
+                    throw new ApiKeyNotSpecifiedException();
+                }
+                return apiKey;
+            }
         } 
     }
 }
