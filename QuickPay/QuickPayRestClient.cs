@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Threading;
 using RestSharp;
 using RestSharp.Authenticators;
-using RestSharp.Extensions;
 using Quickpay.Util;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -18,7 +17,6 @@ namespace Quickpay
         private const string BASE_URL = "https://api.quickpay.net/";
 
 		protected RestClient Client { get; set; }
-
 
 		#region Constructors
 		public QuickPayRestClient(string apikey) : this(string.Empty, apikey)

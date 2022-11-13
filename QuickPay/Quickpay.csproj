@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.2.0</Version>
+    <Version>2.2.1</Version>
     <PackageId>QuickPay.API.Client</PackageId>
-    <ReleaseVersion>2.2.0</ReleaseVersion>
+    <ReleaseVersion>2.2.1</ReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>
