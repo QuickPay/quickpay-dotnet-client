@@ -10,7 +10,7 @@ namespace QuickPay.Example
      * QuickPay .NET SDK Example project
      * The purpose of this example project is to show how you can create a payment and genereate a payment link for authorization.
      */
-    internal class PaymentExample
+    static internal class PaymentExample
     {
         static void Main(string[] args)
         {
