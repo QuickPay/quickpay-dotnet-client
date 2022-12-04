@@ -123,6 +123,15 @@ namespace QuickPay.IntegrationTests
             var paymentUrl = service.CreateOrUpdatePaymentLink(payment.id, createPaymentLinkReqParams);
 
             var task = service.DeletePaymentLink(payment.id);
+
+            try
+            {
+                task.GetAwaiter().GetResult();
+            }
+            catch(Exception)
+            {
+                Assert.Fail("No exception should be thrown");
+            }
         }
 
         [TestMethod]

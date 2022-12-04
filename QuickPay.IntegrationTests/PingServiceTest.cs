@@ -10,7 +10,8 @@ namespace QuickPay.IntegrationTests
         public void TestConnectivity()
         {
             var service = new PingService(QpConfig.ApiKey);
-            service.ping();
+            var result = service.ping();
+            Assert.IsNotNull(result);
         }
     }
 }

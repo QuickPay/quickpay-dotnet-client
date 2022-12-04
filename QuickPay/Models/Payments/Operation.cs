@@ -18,7 +18,6 @@ namespace Quickpay.Models.Payments
 		public string callback_response_code { get; set; }
 		public string callback_duration { get; set; }
 		public string acquirer { get; set; }
-		//public string 3d_secure_status { get; set; }
 		public string callback_at { get; set; }
 		public string created_at { get; set; }
 	}
