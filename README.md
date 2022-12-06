@@ -38,7 +38,8 @@ API Keys at QuickPay has custom permissions for each endpoint in the API. Please
 
 ### Example
 
-In the GitHub repo you can take a look at the example project. It shows what you need to do in order to create a payment and generate a payment link to show for the user in a browser.
+In the GitHub repo you can take a look at the [example project](https://github.com/QuickPay/quickpay-dotnet-client/blob/documentationUpdate/QuickPay.Example/PaymentExample.cs). It shows what you need to do in order to create a payment, generate a payment link to show for the user in a browser and how to capture the payment.
+
 
 #### The unit tests
 
