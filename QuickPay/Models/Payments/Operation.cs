@@ -6,7 +6,7 @@ namespace Quickpay.Models.Payments
 	{
 		public int id { get; set; }
 		public string type { get; set; }
-		public int amount { get; set; }
+		public int? amount { get; set; }
 		public bool pending { get; set; }
 		public string qp_status_code { get; set; }
 		public string qp_status_msg { get; set; }

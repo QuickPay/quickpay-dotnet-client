@@ -34,7 +34,7 @@ namespace Quickpay
 			var restClientOptions = new RestClientOptions(BASE_URL)
 			{
 				UserAgent = "QuickPay .Net Standard 2.0 SDK",
-				FollowRedirects = true,				
+				FollowRedirects = true
 			};
 
 			Client = new RestClient(options: restClientOptions) {
@@ -109,7 +109,7 @@ namespace Quickpay
 			}
 
 			if (!OkStatusCodes.Contains (response.StatusCode)) {
-				throw new HttpFailureStatusCodeException((int)response.StatusCode, response.StatusDescription);
+				throw new HttpFailureStatusCodeException((int)response.StatusCode, response.Content);
 			}
 
 			if(response.ErrorException != null) {
