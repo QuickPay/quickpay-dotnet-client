@@ -2,11 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.2.1</Version>
+    <Version>2.2.2</Version>
     <PackageId>QuickPay.API.Client</PackageId>
-    <ReleaseVersion>2.2.0</ReleaseVersion>
+    <ReleaseVersion>2.2.2</ReleaseVersion>
+    <SynchReleaseVersion>false</SynchReleaseVersion>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <NoStdLib>true</NoStdLib>
+    <NoStdLib>true</NoStdLib>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
   <ItemGroup>
     <None Remove="RestSharp" />
     <None Remove="Exceptions\" />
