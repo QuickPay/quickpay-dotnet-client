@@ -108,13 +108,14 @@ namespace Quickpay
 				throw new NotFoundException ("Endpoint not found, please note this could mean you are not authorized to access this endpoint");
 			}
 
-			if (!OkStatusCodes.Contains (response.StatusCode)) {
+            if (response.ErrorException != null)
+            {
+                throw response.ErrorException;
+            }
+
+            if (!OkStatusCodes.Contains (response.StatusCode)) {
 				throw new HttpFailureStatusCodeException((int)response.StatusCode, response.Content);
 			}
-
-			if(response.ErrorException != null) {
-				throw response.ErrorException;
-            }
 		}
 	}
 }
