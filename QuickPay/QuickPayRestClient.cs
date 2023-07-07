@@ -39,16 +39,6 @@ namespace Quickpay
             };
 
 			Client = new RestClient(options: restClientOptions);
-
-            JsonSerializerOptions options = new JsonSerializerOptions()
-            {
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-            };
-
-            //Client.UseSerializer(() =>
-            //{
-            //    return new SystemTextJsonSerializer(options);
-            //});
         }
 
 
