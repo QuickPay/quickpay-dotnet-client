@@ -34,22 +34,21 @@ namespace Quickpay
 			var restClientOptions = new RestClientOptions(BASE_URL)
 			{
 				UserAgent = "QuickPay .Net Standard 2.0 SDK",
-				FollowRedirects = true
-			};
+				FollowRedirects = true,
+				Authenticator = new HttpBasicAuthenticator(username, password)				
+            };
 
-			Client = new RestClient(options: restClientOptions) {
-				Authenticator = new HttpBasicAuthenticator(username, password)
-			};
+			Client = new RestClient(options: restClientOptions);
 
             JsonSerializerOptions options = new JsonSerializerOptions()
             {
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
             };
 
-            Client.UseSerializer(() =>
-            {
-                return new SystemTextJsonSerializer(options);
-            });
+            //Client.UseSerializer(() =>
+            //{
+            //    return new SystemTextJsonSerializer(options);
+            //});
         }
 
 

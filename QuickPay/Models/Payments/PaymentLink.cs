@@ -18,7 +18,7 @@
 		public string version { get; set; }
 		public string acquirer { get; set; }
 		public int? deadline { get; set; }
-		public bool framed { get; set; }
+		public bool? framed { get; set; }
 		public object branding_config { get; set; }
 		public bool? invoice_address_selection { get; set; }
 		public bool? shipping_address_selection { get;set; }
