@@ -109,7 +109,7 @@ namespace Quickpay.Services
             return CallEndpointAsync<Payment>("payments/" + id + "/refund", prepareRequest);
         }
 
-        public Task<Payment> CancelPayment(int id, string callbackUrl = null, bool synchronized = false)
+        public Task<Payment> CancelPayment(int id, string callbackUrl = null)
         {
             Action<RestRequest> prepareRequest = (RestRequest request) =>
             {
@@ -121,7 +121,6 @@ namespace Quickpay.Services
             };
 
             var url = "payments/" + id + "/cancel";
-            url += "?synchronized=" + synchronized;
 
             return CallEndpointAsync<Payment>(url, prepareRequest);
         }
