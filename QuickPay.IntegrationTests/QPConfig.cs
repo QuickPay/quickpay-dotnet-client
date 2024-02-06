@@ -1,5 +1,4 @@
-﻿using System;
-using QuickPay.IntegrationTests.Exceptions;
+﻿using QuickPay.IntegrationTests.Exceptions;
 
 namespace QuickPay.IntegrationTests
 {

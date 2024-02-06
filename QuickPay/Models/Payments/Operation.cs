@@ -16,7 +16,7 @@ namespace Quickpay.Models.Payments
 		public string callback_url { get; set; }
 		public Boolean? callback_success { get; set; }
 		public string callback_response_code { get; set; }
-		public string callback_duration { get; set; }
+		public int? callback_duration { get; set; }
 		public string acquirer { get; set; }
 		public string callback_at { get; set; }
 		public string created_at { get; set; }

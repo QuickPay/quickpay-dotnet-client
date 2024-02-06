@@ -61,6 +61,6 @@ Global
 		$4.FileWidth = 80
 		$4.TabsToSpaces = True
 		$4.scope = text/plain
-		version = 2.2.3
+		version = 2.2.4
 	EndGlobalSection
 EndGlobal
