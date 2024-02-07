@@ -101,7 +101,7 @@ namespace QuickPay.IntegrationTests
             var service = new PaymentsService(QpConfig.ApiKey);
             string randomOrderId = OrderIdGenerator.createRandomOrderId();
 
-            var createPaymentReqParams= new CreatePaymentRequestParams("DKK", randomOrderId);
+            var createPaymentReqParams = new CreatePaymentRequestParams("DKK", randomOrderId);
             Payment payment = service.CreatePayment(createPaymentReqParams).GetAwaiter().GetResult();
 
             var createPaymentLinkReqParams = new CreatePaymentLinkRequestParams(1000);
@@ -128,7 +128,7 @@ namespace QuickPay.IntegrationTests
             {
                 task.GetAwaiter().GetResult();
             }
-            catch(Exception)
+            catch (Exception)
             {
                 Assert.Fail("No exception should be thrown");
             }
@@ -161,6 +161,39 @@ namespace QuickPay.IntegrationTests
             var result = task.Result;
 
             Assert.IsNotNull(result);
-        }        
+        }
+
+        private readonly string _jsonPaymentResponseTest = @"{
+		""id"": 2,
+		""type"": ""authorize"",
+		""amount"": 148,
+		""pending"": false,
+		""qp_status_code"": ""20000"",
+		""qp_status_msg"": ""Approved"",
+		""aq_status_code"": ""0"",
+		""aq_status_msg"": ""Accepted, The agreement has been accepted."",
+		""data"": { },
+		""callback_url"": ""https://13f5-147-78-28-145.ngrok-free.app/subscriptions/callback"",
+		""callback_success"": false,
+		""callback_response_code"": null,
+		""callback_duration"": 30002,
+		""acquirer"": ""mobilepaysubscriptions"",
+		""3d_secure_status"": null,
+		""callback_at"": ""2023-09-06T11:54:00Z"",
+		""created_at"": ""2023-09-06T11:50:58Z""
+	}";
+
+        [TestMethod]
+        public void ParseJsonResponse()
+        {
+            try
+            {
+                var operation = System.Text.Json.JsonSerializer.Deserialize<Quickpay.Models.Payments.Operation>(_jsonPaymentResponseTest);
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
     }
 }
