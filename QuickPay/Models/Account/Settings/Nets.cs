@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Quickpay.Models.Account.Settings
+namespace QuickPay.Models.Account.Settings
 {
 	public class Nets
 	{

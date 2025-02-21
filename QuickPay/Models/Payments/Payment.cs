@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Quickpay.Models.Payments
+namespace QuickPay.Models.Payments
 {
 	public class Payment
 	{

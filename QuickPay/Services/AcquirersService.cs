@@ -1,7 +1,7 @@
-﻿using Quickpay.Models.Account.Settings;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using QuickPay.Models.Account.Settings;
 
-namespace Quickpay.Services
+namespace QuickPay.Services
 {
     public class AcquirersService : QuickPayRestClient
     {

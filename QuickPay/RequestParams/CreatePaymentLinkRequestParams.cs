@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Quickpay.RequestParams
+namespace QuickPay.RequestParams
 {
     public class CreatePaymentLinkRequestParams
     {

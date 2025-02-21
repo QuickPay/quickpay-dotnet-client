@@ -1,6 +1,5 @@
-﻿using Quickpay.Models.Payments;
-using Quickpay.RequestParams;
-using Quickpay.Services;
+﻿using QuickPay.Models.Payments;
+using QuickPay.Services;
 using QuickPay.RequestParams;
 using System;
 using System.Text.Json;

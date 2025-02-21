@@ -1,7 +1,7 @@
-﻿using Quickpay.Models.Payments;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using QuickPay.Models.Payments;
 
-namespace Quickpay.RequestParams
+namespace QuickPay.RequestParams
 {
     public class CreatePaymentRequestParams
     {

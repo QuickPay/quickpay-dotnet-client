@@ -1,8 +1,8 @@
-﻿using Quickpay.Models.Payments;
-using QuickPay.Models;
+﻿using QuickPay.Models;
 using System.Collections.Generic;
+using QuickPay.Models.Payments;
 
-namespace Quickpay.RequestParams
+namespace QuickPay.RequestParams
 {
     public class UpdateSubscriptionRequestParams
     {

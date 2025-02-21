@@ -1,4 +1,4 @@
-namespace Quickpay.Models.Ping
+namespace QuickPay.Models.Ping
 {
     public class Pong
     {

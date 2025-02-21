@@ -1,12 +1,11 @@
-﻿using Quickpay.Models.Payments;
-using Quickpay.RequestParams;
-using QuickPay.RequestParams;
+﻿using QuickPay.RequestParams;
 using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using QuickPay.Models.Payments;
 
-namespace Quickpay.Services
+namespace QuickPay.Services
 {
     public class PaymentsService : QuickPayRestClient
     {

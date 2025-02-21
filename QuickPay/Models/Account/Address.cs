@@ -1,4 +1,4 @@
-﻿namespace Quickpay.Models.Account
+﻿namespace QuickPay.Models.Account
 {
     public class Address
     {

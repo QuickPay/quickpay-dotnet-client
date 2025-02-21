@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Quickpay.Services;
+using QuickPay.Services;
 
 namespace QuickPay.IntegrationTests
 {

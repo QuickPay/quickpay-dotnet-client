@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Quickpay.Models.Account;
+using QuickPay.Models.Account;
 
-namespace Quickpay.Services
+namespace QuickPay.Services
 {
     public class AccountService : QuickPayRestClient
     {

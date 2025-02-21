@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Quickpay.Models.Payments
+namespace QuickPay.Models.Payments
 {
 	public class Operation
 	{

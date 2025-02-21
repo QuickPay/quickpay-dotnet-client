@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Quickpay;
-using Quickpay.Models.Payments;
-using Quickpay.RequestParams;
+using QuickPay;
+using QuickPay.Models.Payments;
 using QuickPay.RequestParams;
 using RestSharp;
 

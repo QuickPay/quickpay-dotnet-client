@@ -1,5 +1,5 @@
 ﻿using System;
-using Quickpay.Models.Payments;
+using QuickPay.Models.Payments;
 
 namespace QuickPay.RequestParams
 {

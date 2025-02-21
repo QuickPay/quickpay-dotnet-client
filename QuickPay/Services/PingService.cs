@@ -1,8 +1,8 @@
-﻿using Quickpay.Models.Ping;
-using RestSharp;
+﻿using RestSharp;
 using System;
+using QuickPay.Models.Ping;
 
-namespace Quickpay.Services
+namespace QuickPay.Services
 {
     public class PingService : QuickPayRestClient
     {

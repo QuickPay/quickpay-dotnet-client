@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 using System.Threading;
 using RestSharp;
 using RestSharp.Authenticators;
-using Quickpay.Util;
+using QuickPay.Util;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using RestSharp.Serializers.Json;
 using QuickPay.Exceptions;
 
-namespace Quickpay
+namespace QuickPay
 {
 	public abstract class QuickPayRestClient
 	{

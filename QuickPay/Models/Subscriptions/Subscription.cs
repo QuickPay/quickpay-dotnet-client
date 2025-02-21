@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using QuickPay.Models;
 
-namespace Quickpay.Models.Payments
+namespace QuickPay.Models.Payments
 {
 	public class Subscription
 	{

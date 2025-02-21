@@ -1,7 +1,6 @@
 ﻿using System;
 using QuickPay.IntegrationTests.Util;
-using Quickpay.RequestParams;
-using Quickpay.Services;
+using QuickPay.RequestParams;
 using QuickPay.Services;
 
 namespace QuickPay.IntegrationTests

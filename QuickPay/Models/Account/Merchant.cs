@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Quickpay.Models.Account.Settings;
+using QuickPay.Models.Account.Settings;
 
-namespace Quickpay.Models.Account
+namespace QuickPay.Models.Account
 {
 	public class Merchant
 	{

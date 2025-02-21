@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Quickpay.Util
+namespace QuickPay.Util
 {
 	public static class EnumExtensions
 	{

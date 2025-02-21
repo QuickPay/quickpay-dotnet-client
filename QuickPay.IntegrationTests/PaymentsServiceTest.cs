@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Quickpay;
-using Quickpay.Models.Payments;
-using Quickpay.RequestParams;
-using Quickpay.Services;
+using QuickPay;
+using QuickPay.Models.Payments;
+using QuickPay.RequestParams;
+using QuickPay.Services;
 using QuickPay.IntegrationTests.Util;
 
 namespace QuickPay.IntegrationTests
